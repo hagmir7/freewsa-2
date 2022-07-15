@@ -1,0 +1,37 @@
+Logout
+Update profile
+Profile
+Log in
+Register
+The username or password is incorrect.
+Log in to manage your account
+Username
+Password
+Login
+Enter your username
+Enter your password
+Create your account
+Not yet registered
+Email already exists.
+Password does not match.
+Create your account and start reading now
+First name
+Last name
+Email
+Confirm password
+Password
+Avatar updated successfully
+Change
+Chagne profile image
+Already have an account
+Policy
+Privacy Policy
+Full Name
+Phone
+Address
+Edit
+Save Changes
+Country
+City or town
+Gander
+Bio
