@@ -17,7 +17,7 @@ export const Profile = () => {
 
 
     let getData = async () => {
-        const response = await fetch(`${url}/${lang}/api/user/${username}`, {
+        const response = await fetch(`${url}${lang}/api/user/${username}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export const Profile = () => {
             <div className="container">
                 <div className="main-body">
                     <div className="row gutters-sm">
-                        <div className='col-md-4 animate__animated animate__zoomIn animate__faster'>
+                        <div className='col-md-4'>
                         <UserInfo
                             username={profile[0].username}
                             first_name={profile[0].first_name}
@@ -54,7 +54,7 @@ export const Profile = () => {
 
 
 
-                        <div className='col-md-8 animate__animated animate__zoomIn animate__faster'>
+                        <div className='col-md-8 '>
                         <UserInfoCard
                             username={profile[0].username}
                             first_name={profile[0].first_name}

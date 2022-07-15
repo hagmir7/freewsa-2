@@ -9,7 +9,7 @@ function Auth() {
     const {t} = useTranslation()
     return (
         <div className="dropdown">
-            <img src={`http://127.0.0.1:8000${user.avatar}`} width="40px" height={40}  className="cover border rounded-pill pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
+            <img src={user.avatar} width="40px" height={40}  className="cover border rounded-pill pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" />
             <ul className='dropdown-menu dropdown-menu-end animate__animated animate__flipInX animate__faster' id="avatar-menu" aria-labelledby="dropdownMenuButton1">
                 <li><Link to={user.username} className="dropdown-item">{t('Profile')}</Link></li>
                 <li><Link to={`/profile/${user.username}`} className='dropdown-item'>{t("Update profile")}</Link></li>

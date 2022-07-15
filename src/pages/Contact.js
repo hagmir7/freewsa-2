@@ -40,7 +40,7 @@ function Contact() {
 
     axios({
       method: 'post',
-      url: `${url}/${lang}/api/contact`,
+      url: `${url}${lang}/api/contact`,
       data: {
         "name": name,
         "email": email,

@@ -51,10 +51,8 @@ function App() {
 
             <Routes>
 
-              <Route path="/" element={<PrivateRoute />} exact>
-                <Route path="/" exact element={<Home />} />
-              </Route>
-
+              {/* <Route path="/" element={<PrivateRoute />} exact></Route> */}
+              <Route path="/" exact element={<Home />} />
               <Route path="/create-post" element={<AdminRoute />}>
                 <Route path='' element={<CreatePost />}></Route>
               </Route>
@@ -63,7 +61,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/policy" element={<Policy />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/detail/:id" element={<Detial />} />
+              <Route path="/p/:slug" element={<Detial />} />
               <Route path="/books" element={<Book />} />
               <Route path="/book/:id" element={<BookDetail />} />
               <Route path="/Menu" element={<Menu />} />
@@ -74,7 +72,6 @@ function App() {
               <Route path='/profile/:username' element={<UpdateProfile />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
-
         </AuthProvider>
         </UrlProvider>
         <Footer />

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { message } from 'antd';
 import { Image } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { UrlContext } from '../context/UrlContext';
 
 export const UserInfo = (props) => {
 
@@ -16,7 +17,7 @@ export const UserInfo = (props) => {
                         <Image
                             width={150}
                             height={150}
-                            src={`http://127.0.0.1:8000` + props.avatar}
+                            src={props.avatar}
                             className="rounded-circle cover border overflow-hidden"
                         />
                         <div className="mt-3">
@@ -100,11 +101,12 @@ export const UpdateUserInfo = (props) => {
 
     const { user } = useContext(AuthContext);
     const {t} = useTranslation();
+    const {lang, url} = useContext(UrlContext);
 
 
     const updateInfo = async (event) => {
         event.preventDefault();
-        const response = await fetch(`http://127.0.0.1:8000/en/api/update/user/${user.username}`, {
+        const response = await fetch(`${url}${lang}/api/update/user/${user.username}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -175,9 +177,10 @@ export const UpdateUserInfo = (props) => {
 export const ProfileUpdate = (props) => {
     const { user } = useContext(AuthContext);
     const {t} = useTranslation();
+    const {lang, url} = useContext(UrlContext);
     const UpdateProfile = async (event) => {
         event.preventDefault();
-        const response = await fetch(`http://127.0.0.1:8000/en/api/update/profile/${user.user_id}`, {
+        const response = await fetch(`${url}${lang}/api/update/profile/${user.user_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

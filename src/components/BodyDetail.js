@@ -1,5 +1,5 @@
-import jsCookie from 'js-cookie';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import { UrlContext } from '../context/UrlContext';
 import Loading from "./Loading"
 
 
@@ -8,18 +8,19 @@ function BodyDetail(){
         fetchItems();
     },[]);
 
-    const currentLanguageCode = jsCookie.get('i18next')
     const [items, setItems] = useState(null);
+    const {url, lang} = useContext(UrlContext)
+
     const fetchItems = async () =>{
-        const data = await fetch(`https://freewsad.herokuapp.com/${currentLanguageCode}/api/posts/3`);
+        const data = await fetch(`${url}${lang}/api/posts/3`);
         const items = await data.json();
         const data_item = items.data;
         const item = ()=>{
             return(
                 data_item.map(item => (
-                    <div key={item.id} className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4'>
+                    <div key={item.slug} className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4'>
                         <div className='card'>
-                            <a href={`/detail/${item.id}`}>
+                            <a href={`/p/${item.slug}`}>
                             <div className='content-image'>
                             <img className='post-image' alt={item.title} src={item.image} />
                             </div>
@@ -34,11 +35,6 @@ function BodyDetail(){
         }
         setItems(item)
     }
-
-    
-
-    
-
     return(
         <div>
             <div className='row p-2 pb-3 justify-content-center'>

@@ -24,7 +24,7 @@ export const UpdateProfile = () => {
 
 
     let getData = async () => {
-        const response = await fetch(`${url}/${lang}/api/user/${username}`, {
+        const response = await fetch(`${url}${lang}/api/user/${username}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const UpdateProfile = () => {
 
         const formDate = new FormData();
         formDate.append('avatar', event.target.avatar.files[0], event.target.avatar.files[0].name);
-        axios.put(`${url}/${lang}/api/update/avatar/`+user.user_id, formDate, {
+        axios.put(`${url}${lang}/api/update/avatar/`+user.user_id, formDate, {
             headers: {
                 'content-type': 'multipart/form-data'
             }

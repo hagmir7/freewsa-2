@@ -23,7 +23,7 @@ export const CreatePost = () => {
 
 
 
-        axios.post(`${url}/${lang}/api/create-post`, dataForm, {
+        axios.post(`${url}${lang}/api/create-post`, dataForm, {
             method: "POST",
             headers:{
                 'Content-Type': 'multipart/form-data',

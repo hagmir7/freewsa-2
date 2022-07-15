@@ -22,7 +22,7 @@ const Login = () => {
                             <p className="h5 mb-1">{t("Log in to manage your account")}</p>
                     </div>
                     <div className="col-md-5 shadow-sm card p-3">
-                        {/* <h1 className="h4">Login</h1> */}
+                        <div id="alert-login"></div>
                         <form onSubmit={login}>
                             <label htmlFor="username" className="text-muted h6">{t('Username')}</label>
                             <input type="text" name='username' className="form-control mb-3" placeholder={t("Enter your username")}/>

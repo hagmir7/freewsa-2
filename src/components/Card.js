@@ -1,17 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 import { Spin, Space } from 'antd';
-import coockies from 'js-cookie';
 import { useTranslation } from 'react-i18next';
+import { UrlContext } from '../context/UrlContext';
 
 
 function Card(){
-    const currentLanguageCode = coockies.get('i18next')
+
     useEffect(() => {
         fetchItems();
         laodMore()
     },[]);
+
+    const {lang, url} = useContext(UrlContext);
 
     const [loader, setLoder] = useState(12)
 
@@ -39,7 +41,7 @@ function Card(){
 
     const [items, setItems] = useState(null);
     const fetchItems = async () =>{
-        const data = await fetch(`https://freewsad.herokuapp.com/${currentLanguageCode}/api/posts/${loader}`);
+        const data = await fetch(`${url}${lang}/api/posts/${loader}`);
 
         const items = await data.json();
         const dataItem = items.data;
@@ -49,7 +51,7 @@ function Card(){
                 dataItem.map(item => (
                     <div key={item.id} className='col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4' title={item.title}>
                         <div className='card'>
-                            <Link to={`/detail/${item.id}`}>
+                            <Link to={`/p/${item.slug}`}>
                             <div className='content-image'>
                             <img className='post-image' alt={item.title} src={item.image} />
                             </div>

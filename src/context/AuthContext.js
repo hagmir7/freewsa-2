@@ -10,11 +10,6 @@ import { UrlContext } from './UrlContext';
 export const AuthContext = createContext({});
 
 
-
-
-
-
-
 export const AuthProvider = ({ children }) => {
 
   const {url, lang} = useContext(UrlContext);
@@ -38,7 +33,8 @@ export const AuthProvider = ({ children }) => {
 
 
   let loginUser = async (username, password) => {
-    let response = await fetch(`${url}/${lang}/api/token/`, {
+    console.log(url,lang)
+    let response = await fetch(`${url}${lang}/api/token/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -55,7 +51,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('setAuthTokens', JSON.stringify(data));
       history('/');
     } else {
-      document.querySelector('#alert-login').innerHTML = (<div className='alert alert-danger'>{t("The username or password is incorrect.")}</div>)
+      document.querySelector('#alert-login').innerHTML = (`<div class="alert-danger alert">${t("The username or password is incorrect.")}</div>`)
     }
 
   }
@@ -71,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   // Update token 
   let updateToken = async () => {
     console.log('Send token')
-    let response = await fetch(`${url}/${lang}/api/token/refresh/`, {
+    let response = await fetch(`${url}${lang}/api/token/refresh/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

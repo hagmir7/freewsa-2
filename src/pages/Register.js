@@ -29,7 +29,7 @@ const Register = () => {
 
         event.preventDefault();
         if(event.target.password.value === event.target.password1.value){
-            let fetchItem = await fetch(`${url}/${lang}/api/register`, {
+            let fetchItem = await fetch(`${url}${lang}/api/register`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

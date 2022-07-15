@@ -1,21 +1,22 @@
-import {React, useEffect, useState} from 'react';
+import {React, useContext, useEffect, useState} from 'react';
 import Content from '../components/Content';
 import LoadingDetail from '../components/LoadignDetail';
-import JsCookies from 'js-cookie';
 import { useParams } from "react-router-dom";
+import { UrlContext } from '../context/UrlContext';
 
 function Detial({match}){
+
+  const {lang, url} = useContext(UrlContext)
     useEffect(() => {
         fetchItem();
     },[]);
 
 
-    const { id } = useParams();
+    const { slug } = useParams();
     
-    const currentLanguageCode = JsCookies.get("i18next")
     const [item, setItem] = useState(null);
     const fetchItem = async () =>{
-        const fetchItem = await fetch(`https://freewsad.herokuapp.com/${currentLanguageCode}/api/english_detail/${id}`);
+        const fetchItem = await fetch(`${url}${lang}/api/post/${slug}`);
         const item = await fetchItem.json();
         const data_item = item.data;
         const data = ()=>{
