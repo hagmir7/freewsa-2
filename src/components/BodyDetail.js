@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { UrlContext } from '../context/UrlContext';
 import Loading from "./Loading"
-import coockies from 'js-cookie';
 
 
 function BodyDetail(){
@@ -9,12 +8,11 @@ function BodyDetail(){
         fetchItems();
     },[]);
 
-    const lang = coockies.get('i18next')
-
     const [items, setItems] = useState(null);
+    const {url, lang} = useContext(UrlContext)
 
     const fetchItems = async () =>{
-        const data = await fetch(`https://freewsad.herokuapp.com/${lang}/api/posts/3`);
+        const data = await fetch(`${url}${lang}/api/posts/3`);
         const items = await data.json();
         const data_item = items.data;
         const item = ()=>{

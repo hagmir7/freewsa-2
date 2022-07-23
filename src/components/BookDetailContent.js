@@ -16,7 +16,7 @@ const BookDetailContent = (props) => {
     const BtnDownload = ()=> {
         return(
                 <div>
-                     <a className='btn btn-success' href={props.book_file} target="_blank">{t("DOWNLOAD")}</a>
+                     <a className='btn btn-success' href={props.book_file} target='_blanck' download>{t("DOWNLOAD")}</a>
                 </div>
             )
     };
@@ -28,7 +28,6 @@ const BookDetailContent = (props) => {
                     <h1 className="blog-post-title h4 mt-2">{props.name}</h1>
                     <p className="text-left">{props.description}</p>
                     <GoogleAd slot="4567237334" googleAdId="ca-pub-6043226569102012"/>
-    
                     <hr/>
                         <div className="d-flex justify-content-center mb-3">
                             <div className="card shadow-sm overflow-hidden">
