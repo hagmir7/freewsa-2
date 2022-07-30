@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Fragment } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Spin, Space } from 'antd';
@@ -18,6 +18,7 @@ function Book() {
 
     }, []);
 
+    const history = useNavigate()
     
 
 
@@ -52,6 +53,8 @@ function Book() {
 
         const items = await data.json();
         const data_item = items.data;
+
+
         const item = () => {
             return (
                 data_item.map(item => (

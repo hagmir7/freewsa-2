@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import LoadingDetail from '../components/LoadignDetail';
 import { UserInfo, UserInfoCard } from '../components/ProfileCard';
 import { UrlContext } from '../context/UrlContext';
+import NotFoundPage from './NotFoundPage';
+
 
 export const Profile = () => {
     const { username } = useParams();
@@ -23,6 +25,9 @@ export const Profile = () => {
                 'Content-Type': 'application/json',
             }
         })
+        .catch((error) => {
+            console.error('Error:', error);
+          });
         const data = await response.json()
         if (response.status === 200) {
             setProfile(data);

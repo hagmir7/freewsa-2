@@ -7,10 +7,6 @@ import Fk from '../ads/Fk';
 
 
 function Detial(props) {
-
-    const defaultImage = 'https://agmir-media.s3.amazonaws.com/default-post.png';
-    const isDefaul = defaultImage.slice(0,53) === props.image.slice(0,53) ? false  : true;
-
     const image = ()=>{
         return(
             <div className='shdow-sm card mt-3 mb-3'>
@@ -25,7 +21,7 @@ function Detial(props) {
                     <div className='col-sm-12 col-md-10 col-lg-8 col-xl-8 card shadow-sm' id='myList'>
                         {/* <GoogleAd slot="4567237334" googleAdId="ca-pub-6043226569102012"/> */}
                         <Fk />
-                        {isDefaul ? image() :''}
+                        {props.image ? image() :''}
                         
                         <Fk />
                         <div className='d-flex justify-content-center mt-2'>

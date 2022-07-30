@@ -2,8 +2,9 @@
 import {React, useContext, useEffect, useState} from 'react';
 import BookDetailContent from '../components/BookDetailContent';
 import LoadingDetail from '../components/LoadignDetail';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import NotFoundPage from './NotFoundPage';
 
 
 const BookDetail = ({match})=>{
@@ -12,6 +13,8 @@ const BookDetail = ({match})=>{
     useEffect(() => {
         fetchItem();
     },[]);
+
+    const history = useNavigate();
     
     const [item, setItem] = useState(null);
     const { id } = useParams();
@@ -26,7 +29,7 @@ const BookDetail = ({match})=>{
         method: 'GET',
         url: `https://www.freedaz.com/en/api/book/${id}?format=json`,
       }).then((response => {
-        console.log(response.data)
+
         const item = response.data;
         const data = ()=>{
           return (
@@ -38,7 +41,9 @@ const BookDetail = ({match})=>{
           )
         }
         setItem(data)
-      }));
+      })).catch((error) => {
+        setItem(<NotFoundPage/>)
+      });;
     }
 
 
