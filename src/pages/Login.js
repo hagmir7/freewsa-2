@@ -4,15 +4,13 @@ import { Link } from "react-router-dom";
 import logo from '../assets/img/logo-rounded-pill.webp';
 import AuthContext from "../context/AuthContext";
 import { useTranslation } from "react-i18next";
+import { LoadingOutlined } from '@ant-design/icons';
 
 
 const Login = () => {
 
     let {login} = useContext(AuthContext);
     const {t} = useTranslation()
-
-
-    
     return (
         <div>
             <div className="container">
@@ -28,7 +26,10 @@ const Login = () => {
                             <input type="text" name='username' className="form-control mb-3" placeholder={t("Enter your username")}/>
                             <label htmlFor="password" className="text-muted h6">{t("Password")}</label>
                             <input type="password" name='password' className="form-control mb-3" placeholder={t("Enter your password")}/>
-                            <button type="submit" className="w-100 btn btn-primary my-2">{t("Login")}</button>
+                            <button type="submit" id="login-btn" className="w-100 btn btn-primary my-2">
+                                <span id="login">{t("Login")}</span> 
+                                <LoadingOutlined className="d-none" id="box" style={{ fontSize: 24}} />
+                            </button>
                         </form>
                     </div>
                 </div>

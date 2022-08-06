@@ -56,9 +56,8 @@ const BookDetailContent = (props) => {
                             </tbody>
                         </table>
                         <h2 className="h5">{t("Download Book")}</h2>
-                        <GoogleAd slot="4567237334" googleAdId="ca-pub-6043226569102012"/>
                         <div className="w-100 d-flex justify-content-center">
-                            {coockies.get('email') == 'valid' ? BtnDownload() : ModelDownload() }
+                            {coockies.get('email') === 'valid' ? BtnDownload() : ModelDownload() }
                             {/* <DownloadModal  link={props.book_file}/> */}
                         </div>
                         <div className="mb-3">

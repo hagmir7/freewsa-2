@@ -4,9 +4,8 @@ import 'antd/dist/antd.min.css'
 import App from './App';
 import i18n from './i18n';
 import { HelmetProvider } from 'react-helmet-async';
-import { Spin, Space } from 'antd';
 import { createRoot } from 'react-dom/client';
-
+import logo from './assets/img/logo-rounded-pill.webp';
 
 
 
@@ -14,12 +13,12 @@ import { createRoot } from 'react-dom/client';
 const loadingarkup = (
   <div className='w-100 landig bg-light d-flex justify-content-center align-items-center'>
       <div>
-        <Space size="large">
-          <Spin size="large" />
-        </Space>
+      <img src={logo} width="60px" alt='Loading Freewsad' className='animate__animated animate__pulse animate__infinite	infinite animate__fast ' />
       </div>    
    </div>
 )
+
+
 
 
 const container = document.getElementById('root');

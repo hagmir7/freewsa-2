@@ -24,7 +24,7 @@ const DownloadModal = (props) => {
     const [email, setEmail] = useState('');
 
     const sendEmail= () => {
-        if(email != ''){
+        if(email !== ''){
             axios({
                 method: 'POST',
                 url: 'https://www.freedaz.com/en/api/save-email',
@@ -34,7 +34,9 @@ const DownloadModal = (props) => {
               }).then((response =>{
                     document.querySelector('#spin').classList.remove('d-none')
                     coockies.set('email', 'valid');
-                    window.location.href = props.link;
+                    // window.location.href = props.link;
+                    window.open(props.link, '_blank');
+                    handleCancel()
             }));
         }else{
             document.querySelector('#message').classList.remove('d-none');

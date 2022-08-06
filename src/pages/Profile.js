@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import LoadingDetail from '../components/LoadignDetail';
 import { UserInfo, UserInfoCard } from '../components/ProfileCard';
 import { UrlContext } from '../context/UrlContext';
-import NotFoundPage from './NotFoundPage';
 
 
 export const Profile = () => {
     const { username } = useParams();
     const [profile, setProfile] = useState(null);
+    const [data, setData ] = useState(null)
     const {url, lang} = useContext(UrlContext);
     const history = useNavigate();
 
@@ -25,15 +25,14 @@ export const Profile = () => {
                 'Content-Type': 'application/json',
             }
         })
-        .catch((error) => {
-            console.error('Error:', error);
-          });
         const data = await response.json()
         if (response.status === 200) {
-            setProfile(data);
-            console.log(data)
-        } else {
-            history('/accounts/login');
+            setData(data);
+            
+            
+        } 
+        else {
+            history('*')
         }
     }
 
@@ -45,15 +44,15 @@ export const Profile = () => {
                     <div className="row gutters-sm">
                         <div className='col-md-4'>
                         <UserInfo
-                            username={profile[0].username}
-                            first_name={profile[0].first_name}
-                            last_name={profile[0].last_name}
-                            email={profile[0].email}
-                            avatar={profile[1].avatar}
-                            country={profile[1].country}
-                            bio={profile[1].bio}
-                            city={profile[1].city}
-                            phone={profile[1].phone}
+                            username={data[0].username}
+                            first_name={data[0].first_name}
+                            last_name={data[0].last_name}
+                            email={data[0].email}
+                            avatar={data[1].avatar}
+                            country={data[1].country}
+                            bio={data[1].bio}
+                            city={data[1].city}
+                            phone={data[1].phone}
                         />
                         </div>
 
@@ -61,15 +60,15 @@ export const Profile = () => {
 
                         <div className='col-md-8 '>
                         <UserInfoCard
-                            username={profile[0].username}
-                            first_name={profile[0].first_name}
-                            last_name={profile[0].last_name}
-                            email={profile[0].email}
-                            avatar={profile[1].avatar}
-                            country={profile[1].country}
-                            bio={profile[1].bio}
-                            city={profile[1].city}
-                            phone={profile[1].phone}
+                            username={data[0].username}
+                            first_name={data[0].first_name}
+                            last_name={data[0].last_name}
+                            email={data[0].email}
+                            avatar={data[1].avatar}
+                            country={data[1].country}
+                            bio={data[1].bio}
+                            city={data[1].city}
+                            phone={data[1].phone}
                         />
                         </div>
                     </div>
@@ -81,5 +80,6 @@ export const Profile = () => {
 
 
 
-    return (profile != null ? <Html /> : <LoadingDetail />)
+
+    return (data != null ? <Html /> :   <LoadingDetail /> );
 }

@@ -7,10 +7,17 @@ import Home from '../assets/img/home.svg'
 import Post from '../assets/img/post.svg'
 import Privacy from '../assets/img/privacy.svg';
 import Language from '../assets/img/location.svg';
+import login from '../assets/img/login.svg';
+import logout from '../assets/img/logout.svg';
+import AuthContext from "../context/AuthContext";
+import { useContext } from "react";
+
 import { useTranslation } from "react-i18next";
 
 const Menu = ()=>{
     const {t} = useTranslation()
+
+    const { logoutUser, user } = useContext(AuthContext);
     return(
         <>
             <div className="container">
@@ -24,6 +31,14 @@ const Menu = ()=>{
                             <MenuItem link="/contact" title={t("Contact Us")} image={Contact} />
                             <MenuItem link="/policy" title={t("Privacy Policy")} image={Privacy} />
                             <MenuItem link="/language" title={t("Language")} image={Language} />
+
+                            {!user ?
+                                 <MenuItem link='/accounts/login' title={t("Login")} image={login}  />
+                                 :
+                                 <span className="list-group-item list-group-item-action pointer" onClick={logoutUser}>
+                                    <img src={logout} alt={t("Logout")} width="30px" />&#xa0; {t("Logout")}
+                                </span>
+                            }
                         </div>
                     </div>
                 </div>

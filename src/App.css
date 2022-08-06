@@ -33,7 +33,7 @@ input {
     box-shadow: none !important
 }
 
-* {
+body {
     font-family: source sans pro, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
 }
 

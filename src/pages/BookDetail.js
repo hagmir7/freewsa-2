@@ -1,5 +1,5 @@
 
-import {React, useContext, useEffect, useState} from 'react';
+import {React, useEffect, useState} from 'react';
 import BookDetailContent from '../components/BookDetailContent';
 import LoadingDetail from '../components/LoadignDetail';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -36,7 +36,7 @@ const BookDetail = ({match})=>{
             <BookDetailContent
              name={item.name} image={item.image} description={item.description} id={id}
              data={item.date} tags={item.tags} pages={item.pages} book_file={item.file}
-             language={item.language} type_file={item.type_file}
+             language={item.language} type_file={item.book_type}
             />
           )
         }

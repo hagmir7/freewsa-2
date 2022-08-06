@@ -18,18 +18,27 @@ function BodyDetail(){
         const item = ()=>{
             return(
                 data_item.map(item => (
-                    <div key={item.slug} className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4'>
-                        <div className='card'>
+                    <div className="col-12 col-md-6 col-lg-4 mb-3" key={item.id}>
+                        <a href={`/p/${item.slug}`}>
+                            {item.image ?
+                                <img className="card-img-top m-0 p-0 border rounded" style={{ objectFit: 'contain' }} alt={item.title} src={item.image} sizes="25vw" />
+                                :
+                                <div className="embed-responsive border rounded d-flex align-items-center" style={{ height: '200px' }} sizes="25vw">
+                                    <div className="h3 text-black text-center m-auto">{item.title}</div>
+                                </div>
+                            }
+                        </a>
+                        <div className="card-body m-0 p-0 mt-2">
                             <a href={`/p/${item.slug}`}>
-                            <div className='content-image'>
-                            <img className='post-image' alt={item.title} src={item.image} />
-                            </div>
-                            <div className='title-content border-top'>
-                            <p className='m-2 h6'>{item.title}</p>
-                            </div>
+                                <div className="card-title h5 my-0 py-0 text-muted">{item.title.length > 40 ? item.title.slice(0, 40).concat('...') : item.title}</div>
                             </a>
+                            <p className="card-text">
+                                <small className="text-muted">
+                                    <span className="mr-2 h6">{item.date}</span>
+                                </small>
+                            </p>
                         </div>
-                    </div>                        
+                    </div>                       
                 ))
             )
         }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Spin, Space } from 'antd';
 import LoadingBook from '../components/LoadingBook';
 import jsCookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
+import Lang from '../components/Lang';
 
 
 function Book() {
@@ -18,7 +19,6 @@ function Book() {
 
     }, []);
 
-    const history = useNavigate()
     
 
 
@@ -76,6 +76,7 @@ function Book() {
         <Fragment>
             <div className='container-xxl p-0'>
                 <div className='last row p-2 pb-3'>
+                    <Lang />
                     {items ? items : <LoadingBook />}
                 </div>
                 <div className='d-flex justify-content-center'>

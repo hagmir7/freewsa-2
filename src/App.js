@@ -16,10 +16,8 @@ import Dashboard from './pages/Dashboard';
 import Language from './pages/Language';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { PrivateRoute } from './utils/PrivateRoute';
-import {useEffect, Fragment } from 'react';
+import {Fragment } from 'react';
 import { AuthProvider } from './context/AuthContext';
-import coockies from 'js-cookie';
 import { Profile } from './pages/Profile';
 import { UpdateProfile } from './pages/UpdateProfile';
 import { AdminRoute } from './utils/AdminRoute';
@@ -29,17 +27,8 @@ import UrlProvider from './context/UrlContext';
 
 
 
+
 function App() {
-
-
-  const lagnCode = coockies.get('i18next') || 'en'
-  useEffect(() => {
-    document.querySelector('html').dir = lagnCode === 'ar' ? 'rtl' : 'ltr'
-    if (localStorage.getItem('setAuthTokens')) {
-      document.querySelector('#avatar-menu').classList.remove(lagnCode === 'ar' ? 'dropdown-menu-end' : 'dropdown-menu-start');
-      document.querySelector('#avatar-menu').classList.add(lagnCode === 'ar' ? 'dropdown-menu-start' : 'dropdown-menu-end');
-    }
-  }, [])
 
 
   return (
@@ -103,5 +92,9 @@ export const Home = () => {
 
   )
 }
+
+
+
+
 
 export default App;

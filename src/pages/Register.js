@@ -6,6 +6,8 @@ import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { UrlContext } from "../context/UrlContext";
+import { LoadingOutlined } from '@ant-design/icons';
+
 
 
 const Register = () => {
@@ -17,7 +19,20 @@ const Register = () => {
     const {t} = useTranslation();
     const {url, lang} = useContext(UrlContext)
 
+    const errorBtn = ()=>{
+        document.getElementById('box').classList.add('d-none');
+        document.getElementById('register').classList.remove('d-none');
+        document.getElementById('register-btn').removeAttribute('disabled', '')
+    }
+
+    const btnLoading = ()=>{
+        document.getElementById('box').classList.remove('d-none');
+        document.getElementById('register').classList.add('d-none');
+        document.getElementById('register-btn').setAttribute('disabled', '')
+    }
+
     const sendUser = async (event) => {
+        btnLoading();
         const request = {
             username: event.target.username.value,
             email: event.target.email.value,
@@ -46,18 +61,22 @@ const Register = () => {
                 }else{
                     if(undefined !== data.message.username){
                         setError(data.message.username)
+                        errorBtn();
                     }else if(undefined !== data.message.password){
                         setError(data.message.password)
+                        errorBtn();
                     }
                 }
             
 
             }else{
                 setError(t("Email already exists."))
+                errorBtn();
             }
 
         }else{
-            setError(t("Password does not match."))
+            setError(t("Password does not match."));
+            errorBtn();
         }
     }
 
@@ -82,7 +101,10 @@ const Register = () => {
                             <input type="email" name='email' className="form-control mb-3" placeholder={t("Email")} required />
                             <input type="password" name='password' className="form-control mb-3" placeholder={t("Password")} required />
                             <input type="password" name='password1' className="form-control mb-3" placeholder={t("Confirm password")} required />
-                            <button type="submit" className="w-100 btn btn-primary my-2">{t("Register")}</button>
+                            <button type="submit" className="w-100 btn btn-primary my-2" id="register-btn">
+                                <span id="register">{t("Register")}</span>
+                                <LoadingOutlined className="d-none" id="box" style={{ fontSize: 24}} />
+                            </button>
                         </form>
                     </div>
                 </div>

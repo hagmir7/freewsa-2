@@ -29,6 +29,9 @@ export const AuthProvider = ({ children }) => {
   const login = (event)=>{
     event.preventDefault()
     loginUser(event.target.username.value,event.target.password.value)
+    document.getElementById('box').classList.remove('d-none');
+    document.getElementById('login').classList.add('d-none');
+    document.getElementById('login-btn').setAttribute('disabled', '')
   }
 
 
@@ -52,6 +55,9 @@ export const AuthProvider = ({ children }) => {
       history('/');
     } else {
       document.querySelector('#alert-login').innerHTML = (`<div class="alert-danger alert">${t("The username or password is incorrect.")}</div>`)
+      document.getElementById('box').classList.add('d-none');
+      document.getElementById('login').classList.remove('d-none');
+      document.getElementById('login-btn').removeAttribute('disabled')
     }
 
   }

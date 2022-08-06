@@ -6,7 +6,6 @@ import AuthContext from "../context/AuthContext";
 
 
 
-
 const languages = [
     {
         code: 'en',
@@ -39,7 +38,7 @@ const Lang = () => {
     const { t } = useTranslation();
     const { i18n } = useTranslation();
     const currentLanguageCode = coockies.get('i18next') || 'en'
-    const currentLanguage =  languages.find(lan=>lan.code == currentLanguageCode)
+    const currentLanguage =  languages.find(lan=>lan.code === currentLanguageCode)
     useEffect(() =>{
         document.querySelector('html').dir = currentLanguage.dir || 'ltr'
 
@@ -47,7 +46,7 @@ const Lang = () => {
             Menu();
         }
 
-    },[currentLanguage])
+    },[currentLanguage, user])
     const Menu = ()=>{
         document.querySelector('#avatar-menu').classList.remove(currentLanguageCode === 'ar' ? 'dropdown-menu-end' : 'dropdown-menu-start')
         document.querySelector('#avatar-menu').classList.add(currentLanguageCode === 'ar' ? 'dropdown-menu-start' : 'dropdown-menu-end')
@@ -56,7 +55,9 @@ const Lang = () => {
 
         const success = () => {
             message.success(t('lang_chang_msg'));
-          };
+            window.location.reload();
+        };
+
 
     return (
         <div className="small">
