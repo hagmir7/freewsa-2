@@ -23,6 +23,7 @@ import { UpdateProfile } from './pages/UpdateProfile';
 import { AdminRoute } from './utils/AdminRoute';
 import { CreatePost } from './pages/CreatePost';
 import UrlProvider from './context/UrlContext';
+import coockies from 'js-cookie';
 
 
 
@@ -30,6 +31,15 @@ import UrlProvider from './context/UrlContext';
 
 function App() {
 
+
+  const lagnCode = coockies.get('i18next') || 'en'
+  useEffect(() => {
+    document.querySelector('html').dir = lagnCode === 'ar' ? 'rtl' : 'ltr'
+    if (localStorage.getItem('setAuthTokens')) {
+      document.querySelector('#avatar-menu').classList.remove(lagnCode === 'ar' ? 'dropdown-menu-end' : 'dropdown-menu-start');
+      document.querySelector('#avatar-menu').classList.add(lagnCode === 'ar' ? 'dropdown-menu-start' : 'dropdown-menu-end');
+    }
+  }, [])
 
   return (
     <div className="App">
