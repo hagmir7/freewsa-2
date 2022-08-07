@@ -46,7 +46,7 @@ const Lang = () => {
             Menu();
         }
 
-    },[currentLanguage, user])
+    },[currentLanguage])
     const Menu = ()=>{
         document.querySelector('#avatar-menu').classList.remove(currentLanguageCode === 'ar' ? 'dropdown-menu-end' : 'dropdown-menu-start')
         document.querySelector('#avatar-menu').classList.add(currentLanguageCode === 'ar' ? 'dropdown-menu-start' : 'dropdown-menu-end')
