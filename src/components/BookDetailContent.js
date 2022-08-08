@@ -65,7 +65,7 @@ const BookDetailContent = (props) => {
                         </div>
                 </article>
             </div>
-            <div className="col-12 col-md-5 col-lg-4 col-xl-4 position-relative">
+            <div className="col-12 col-md-5 col-lg-4 col-xl-4 position-relative d-none d-xl-block d-lg-block">
                 <div className="position-sticky" style={{ top:'60px' }}>
                     <div className="card shadow-sm">
                     <GoogleAd slot="2352137536" googleAdId="ca-pub-6043226569102012"/>

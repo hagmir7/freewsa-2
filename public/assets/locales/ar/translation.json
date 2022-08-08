@@ -41,7 +41,7 @@
     "Profile": "الملف الشخصي",
     "Log in": "تسجل الدخول",
     "Register" : "تسجيل",
-    "The username or password is incorrect.": "إسم المستخد أو كلمة المرور خائة",
+    "The username or password is incorrect.": "إسم المستخدم أو كلمة المرور خاطئة",
     "Username": "إسم المستخدم",
     "Password": "كلمة المرور",
     "Login": "تسجل الدخول",
@@ -69,7 +69,7 @@
     "Bio": "نبذة",
     "Log in to manage your account": "تسجيل الدخول لإدارة حسابك",
     "Create your account and start reading now":"قم بإنشاء حسابك وابدأ القراءة الآن",
-    "ُEnter your password": "أدخل كلمة المرور"
+    "Enter your password": "أدخل كلمة المرور"
 
 
 

@@ -34,7 +34,6 @@ const DownloadModal = (props) => {
               }).then((response =>{
                     document.querySelector('#spin').classList.remove('d-none')
                     coockies.set('email', 'valid');
-                    // window.location.href = props.link;
                     window.open(props.link, '_blank');
                     handleCancel()
             }));

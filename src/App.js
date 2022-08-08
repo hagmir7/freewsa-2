@@ -16,7 +16,7 @@ import Dashboard from './pages/Dashboard';
 import Language from './pages/Language';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import {Fragment } from 'react';
+import {Fragment, useEffect } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { Profile } from './pages/Profile';
 import { UpdateProfile } from './pages/UpdateProfile';
