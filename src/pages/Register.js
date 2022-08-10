@@ -85,7 +85,7 @@ const Register = () => {
 
 
     return (
-        <div>
+        <div className="bg-colors">
             <div className="container">
                 <div className="row d-flex justify-content-center w-100">
                     <div className="text-center mb-1">

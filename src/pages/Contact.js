@@ -6,7 +6,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button, notification, Space ,Spin  } from 'antd';
 import { useTranslation } from "react-i18next";
-import { Fragment } from "react";
 import { UrlContext } from "../context/UrlContext";
 
 function Contact() {
@@ -58,7 +57,7 @@ function Contact() {
   }
 
   return (
-    <Fragment>
+    <div className="bg-colors">
       <div className='container mb-4 p-3'>
         <div className='w-100 row justify-content-center'>
           <div className='col-sm-12 col-md-10 col-lg-6 col-xl-6 card p-3 shadow-sm'>
@@ -86,7 +85,7 @@ function Contact() {
         <link rel='canonical' href="/policy" />
 
       </Helmet>
-    </Fragment>
+    </div>
   );
 }
 

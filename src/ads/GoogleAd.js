@@ -20,15 +20,15 @@ class GoogleAd extends Component {
     render() {
       const { classNames, slot, googleAdId, style, format } = this.props;
       return (
-        <div className={classNames}>
-          <ins
+        <div className={classNames} id={googleAdId} aria-atomic={slot}>
+          {/* <ins
             className="adsbygoogle"
             style={style || { display: 'block', textAlign: "center" }}
             data-ad-client={googleAdId}
             data-ad-slot={slot}
             data-ad-format={format || "auto"}
             data-full-width-responsive="true"
-          ></ins>
+          ></ins> */}
         </div>
       );
     }

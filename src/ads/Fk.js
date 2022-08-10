@@ -17,7 +17,6 @@ class Fk extends Component {
                     data-full-width-responsive="true">
                 </ins>
                </Fragment>
-    
         )
 
     }

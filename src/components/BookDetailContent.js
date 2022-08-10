@@ -21,7 +21,7 @@ const BookDetailContent = (props) => {
             )
     };
     return (
-        <div className="container-lg">
+        <div className="container-lg mt-3">
             <div className="row" key={props.id}>
             <div className="col-12 col-md-7 col-lg-8 col-xl-8 mb-3 card m-0 shadow-sm">
                 <article className="blog-post">
@@ -58,7 +58,6 @@ const BookDetailContent = (props) => {
                         <h2 className="h5">{t("Download Book")}</h2>
                         <div className="w-100 d-flex justify-content-center">
                             {coockies.get('email') === 'valid' ? BtnDownload() : ModelDownload() }
-                            {/* <DownloadModal  link={props.book_file}/> */}
                         </div>
                         <div className="mb-3">
                             <GoogleAd slot="4567237334" googleAdId="ca-pub-6043226569102012"/>
