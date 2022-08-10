@@ -39,7 +39,7 @@ function App() {
       document.querySelector('#avatar-menu').classList.remove(lagnCode === 'ar' ? 'dropdown-menu-end' : 'dropdown-menu-start');
       document.querySelector('#avatar-menu').classList.add(lagnCode === 'ar' ? 'dropdown-menu-start' : 'dropdown-menu-end');
     }
-  }, [])
+  })
 
   return (
     <div className="App">

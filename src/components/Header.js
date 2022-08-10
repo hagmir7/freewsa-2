@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 function Header(){
   const {t} = useTranslation();
      return(
-        <div className="navbar-top d-none d-lg-block small bg-white">
+        <div className="navbar-top d-none d-lg-block small bg-white mb-0">
           <nav className="d-flex justify-content-between p-2">
             <ul className="nav mt-2">
               <li className="nav-item">

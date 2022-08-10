@@ -11,7 +11,7 @@ import logo from './assets/img/logo-rounded-pill.webp';
 
 
 const loadingarkup = (
-  <div className='w-100 landig bg-light d-flex justify-content-center align-items-center'>
+  <div className='w-100 landig bg-light d-flex justify-content-center align-items-center bg-colors'>
       <div>
       <img src={logo} width="60px" alt='Loading Freewsad' className='animate__animated animate__pulse animate__infinite	infinite animate__fast ' />
       </div>    
