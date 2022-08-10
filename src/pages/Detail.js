@@ -21,7 +21,6 @@ function Detial({match}){
         const fetchItem = await fetch(`${url}${lang}/api/post/${slug}`);
         const item = await fetchItem.json();
         const data_item = item.data;
-        console.log(data_item.slug)
         const data = ()=>{
           return (
             < Content id={data_item.id} title={data_item.title} image={data_item.image} views={data_item.views}
@@ -31,9 +30,7 @@ function Detial({match}){
           )
         }
         setItem(data)
-        console.log(fetchItem.status)
         if(fetchItem.status !== 200){
-          console.log("Working")
           history('*')
         }
     }

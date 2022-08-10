@@ -9,13 +9,13 @@ class Fk extends Component {
     render() {
         return (
                <Fragment>
-                 {/* <ins className="adsbygoogle"
+                 <ins className="adsbygoogle"
                     style = { {display:"inline-block"} }
                     data-ad-client="ca-pub-6043226569102012"
                     data-ad-slot="4567237334"
                     data-ad-format="auto"
                     data-full-width-responsive="true">
-                </ins> */}
+                </ins>
                </Fragment>
     
         )
