@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
   const [profile, setProfile ] = useState({avatar: 'test'})
 
   const getUserIfno = ()=>{
-      axios.get(`http://127.0.0.1:8000/en/api/user/id/${user.id}`, {
+      axios.get(`${url}${lang}/api/user/id/${user.id}`, {
           headers : {
               'Content-Type' : 'application/json'
           }
