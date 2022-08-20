@@ -45,7 +45,8 @@ function PostCard() {
     const fetchItems = () => {
         axios.get(`${url}${lang}/api/posts/${loader}/`, {
             headers: {
-                'Content-Type' : 'application/json'
+                // Accept: "application/json, text/plain, */*",
+                'Content-Type': "application/json"
             }
         }).then(response => {
             const data = response.data.data;
@@ -79,6 +80,7 @@ function PostCard() {
             setItems(item)
         }).catch(error => {
             message.error('Loading Fail...')
+            console.log(error)
         })
 
 

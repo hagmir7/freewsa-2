@@ -10,7 +10,7 @@ export default function UrlProvider({children}) {
 
 
     const URL = {
-        url: "http://www.freewsad.com/",
+        url: "https://www.freedaz.com/",
         lang: coockies.get('i18next')
     }
 
