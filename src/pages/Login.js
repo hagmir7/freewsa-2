@@ -16,8 +16,8 @@ const Login = () => {
             <div className="container">
                 <div className="row d-flex justify-content-center w-100">
                     <div className="text-center mb-1">
-                            <img src={logo}  alt="Freewsa" width="70px" />
-                            <p className="h5 mb-1">{t("Log in to manage your account")}</p>
+                        <img src={logo}  alt="Freewsa" width="70px" />
+                        <p className="h5 mb-1">{t("Log in to manage your account")}</p>
                     </div>
                     <div className="col-md-5 shadow-sm card p-3">
                         <div id="alert-login"></div>
@@ -35,7 +35,7 @@ const Login = () => {
                 </div>
                 <div className="row d-flex justify-content-center w-100 mt-3">
                     <div className="col-md-5 card shadow-sm p-4 text-center">
-                        <p className="m-0">{t("Not yet registered")} ? <Link to="/accounts/register" className="text-info">{t("Create your account")}</Link></p>
+                        <p className="m-0">{t("Not yet registered")} ? <Link to="/accounts/register/" className="text-info">{t("Create your account")}</Link></p>
                     </div>
                 </div>
             </div>

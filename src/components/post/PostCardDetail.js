@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { UrlContext } from '../context/UrlContext';
-import Loading from "./Loading"
+import { UrlContext } from '../../context/UrlContext';
+import Loading from "../Loading"
 
 
-function BodyDetail(){
+function PostCardDetail(){
     useEffect(() => {
         fetchItems();
     },[]);
@@ -19,7 +19,7 @@ function BodyDetail(){
             return(
                 data_item.map(item => (
                     <div className="col-12 col-md-6 col-lg-4 mb-3" key={item.id}>
-                        <a href={`/p/${item.slug}`}>
+                        <a href={`/p/${item.slug}/`}>
                             {item.image ?
                                 <img className="card-img-top m-0 p-0 border rounded" style={{ objectFit: 'contain' }} alt={item.title} src={item.image} sizes="25vw" />
                                 :
@@ -29,7 +29,7 @@ function BodyDetail(){
                             }
                         </a>
                         <div className="card-body m-0 p-0 mt-2">
-                            <a href={`/p/${item.slug}`}>
+                            <a href={`/p/${item.slug}/`}>
                                 <div className="card-title h5 my-0 py-0 text-muted">{item.title.length > 40 ? item.title.slice(0, 40).concat('...') : item.title}</div>
                             </a>
                             <p className="card-text">
@@ -53,4 +53,4 @@ function BodyDetail(){
     )
 }
 
-export default BodyDetail;
+export default PostCardDetail;

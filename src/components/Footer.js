@@ -9,16 +9,16 @@ function Footer(){
     return(
         <div className='bg-light py-4 my-2 row border-top'>
             <div className='col-sm-12 col-md-12 col-lg-6 col-xl-6 d-flex justify-content-center'>
-                <Link to='/about'>
+                <Link to='/about/'>
                 <span className='h6 mx-2'>{t("About")}</span>
                 </Link>
-                <Link to='/contact'>
+                <Link to='/contact/'>
                 <span className='h6 mx-2'>{t("Contact")}</span>
                 </Link>
-                <Link to='/policy'>
+                <Link to='/policy/'>
                 <span className='h6 mx-2'>{t("Privacy Policy")}</span>
                 </Link>
-                <Link to='/language'>
+                <Link to='/language/'>
                 <span className='h6 mx-2'>{t("Language")}</span>
                 </Link>
             </div>

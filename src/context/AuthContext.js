@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { UrlContext } from './UrlContext';
-
+import axios from "axios";
 
 
 
@@ -36,15 +36,12 @@ export const AuthProvider = ({ children }) => {
 
 
   let loginUser = async (username, password) => {
-    console.log(url,lang)
     let response = await fetch(`${url}${lang}/api/token/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-
       body: JSON.stringify({ 'username': username, 'password': password })
-      
     })
 
     let data = await response.json();
@@ -62,6 +59,8 @@ export const AuthProvider = ({ children }) => {
 
   }
 
+
+
   let logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
@@ -70,9 +69,10 @@ export const AuthProvider = ({ children }) => {
   }
 
 
+
+
   // Update token 
   let updateToken = async () => {
-    console.log('Send token')
     let response = await fetch(`${url}${lang}/api/token/refresh/`, {
       method: 'POST',
       headers: {
@@ -92,6 +92,24 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+
+
+  const [info , setInfo ] = useState({});
+  const [profile, setProfile ] = useState({avatar: 'test'})
+
+  const getUserIfno = ()=>{
+      axios.get(`http://127.0.0.1:8000/en/api/user/id/${user.id}`, {
+          headers : {
+              'Content-Type' : 'application/json'
+          }
+      }).then(response =>{
+          setInfo(response.data[0]);
+          setProfile(response.data[1]);
+      }).catch(error =>{
+          console.log(error)
+      });
+  }
+
   
 
 
@@ -102,7 +120,14 @@ export const AuthProvider = ({ children }) => {
     loginUser: loginUser,
     logoutUser: logoutUser,
     login: login,
-    authTokens:authTokens
+    authTokens:authTokens,
+    // Get user info 
+    
+    getUserIfno: getUserIfno,
+    // user info
+    userInof : info,
+    userProfile : profile,
+
 
   }
 

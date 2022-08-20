@@ -1,10 +1,12 @@
 import {React, useContext, useEffect, useState} from 'react';
-import Content from '../components/Content';
 import LoadingDetail from '../components/LoadignDetail';
 import { useNavigate, useParams } from "react-router-dom";
 import { UrlContext } from '../context/UrlContext';
+import PostDetialContent from '../components/post/PostDetailContent';
+import axios from 'axios';
+import { message } from 'antd';
 
-function Detial({match}){
+function PostDetial({match}){
 
   const {lang, url} = useContext(UrlContext)
     useEffect(() => {
@@ -18,21 +20,28 @@ function Detial({match}){
     
     const [item, setItem] = useState(null);
     const fetchItem = async () =>{
-        const fetchItem = await fetch(`${url}${lang}/api/post/${slug}`);
-        const item = await fetchItem.json();
-        const data_item = item.data;
+      axios.get(`${url}${lang}/api/post/${slug}`, {
+        headers: {
+          Accept: 'application/json, text/plain, */*'
+        }
+      }).then(response => {
+        console.log(response.data)
+        const post = response.data.data;
         const data = ()=>{
           return (
-            < Content id={data_item.id} title={data_item.title} image={data_item.image} views={data_item.views}
-            category_en={data_item.category_en} date={data_item.date} body={data_item.body} description={data_item.description} tags={item.tags}
+            < PostDetialContent id={post.id} title={post.title} image={post.image} views={post.views}
+            category_en={post.category_en} date={post.date} body={post.body} description={post.description} tags={post.tags}
             slug={slug}
            />
           )
         }
         setItem(data)
-        if(fetchItem.status !== 200){
-          history('*')
-        }
+
+      }).catch(error => {
+        message.error('Loading Fail.')
+        console.log(error);
+        // history('/')
+      })
     }
 
 
@@ -46,4 +55,4 @@ function Detial({match}){
       </div>
     )
 }
-export default Detial;
+export default PostDetial;

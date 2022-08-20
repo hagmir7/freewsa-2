@@ -20,9 +20,8 @@ const loadingarkup = (
 
 
 
-
-const container = document.getElementById('root');
-const root = createRoot(container);
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
@@ -31,8 +30,9 @@ root.render(
         <App />
       </Suspense>
     </HelmetProvider>
-  </StrictMode>
+  </StrictMode>,
 );
+
 
 
 

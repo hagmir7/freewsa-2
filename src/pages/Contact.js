@@ -1,24 +1,20 @@
-import {React, useContext, useState} from "react";
+import { React, useContext } from "react";
 import { } from 'antd';
 
 import { Helmet } from 'react-helmet-async';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button, notification, Space ,Spin  } from 'antd';
+import { notification } from 'antd';
 import { useTranslation } from "react-i18next";
 import { UrlContext } from "../context/UrlContext";
 
 function Contact() {
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [body, setBody] = useState('');
-  const {url, lang} = useContext(UrlContext);
+  const { url, lang } = useContext(UrlContext);
   const history = useNavigate();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
 
-  
+
 
   const openNotificationWithIcon = type => {
     notification[type]({
@@ -28,33 +24,35 @@ function Contact() {
     });
   };
 
-  const contactInfo = async ()=>{
-    // Send a POST request
-    if(!email === "" && !name === "" && !body === ""){
-      const btn = document.querySelector('#btn-contact');
-      const spin = document.querySelector('#spiner');
-      btn.classList.add('d-none')
-      spin.classList.remove('d-none')
-    }
 
-    axios({
-      method: 'post',
-      url: `${url}${lang}/api/contact`,
-      data: {
-        "name": name,
-        "email": email,
-        "body": body
-      }
-    }).then((response =>{
-      
-      if(!email == "" && !name == "" && !body == ""){
+  const SendMessage = (e) => {
+    e.preventDefault();
+    const form = document.getElementById('form-contact')
+    const formData = new FormData(form)
+
+    const email = formData.get('email');
+    const name = formData.get('name');
+    const body = formData.get('body');
+    console.log(body)
+    if (email !== "" && name !== "" && body !== "") {
+      axios({
+        method: 'post',
+        url: `${url}${lang}/api/contact`,
+        data: formData,
+      }).then((response => {
+        form.reset();
         openNotificationWithIcon('success')
-        setTimeout(()=>{
+        setTimeout(() => {
           history('/');
-        },5000)
-      }
-    }));
+        }, 4000)
+      }));
+    }
   }
+
+
+
+
+
 
   return (
     <div className="bg-colors">
@@ -62,20 +60,14 @@ function Contact() {
         <div className='w-100 row justify-content-center'>
           <div className='col-sm-12 col-md-10 col-lg-6 col-xl-6 card p-3 shadow-sm'>
             <h1 className="h4">{t("Contact Us")}</h1>
-            <form>
+            <form id="form-contact" onSubmit={SendMessage}>
               <label htmlFor='name'>{t("Name")}</label>
-              <input className='form-control mb-3' type='text' name='name' placeholder={`${t("Name")}...`} 
-              value={name} onChange={(e) => setName(e.target.value)} required />
-
+              <input className='form-control mb-3' type='text' name='name' placeholder={`${t("Name")}...`} required />
               <label htmlFor='emai'>{t("Email")}</label>
-              <input className='form-control mb-3' type='email' name='email' placeholder={`${t("Email")}...`} 
-              value={email} onChange={(e) => setEmail(e.target.value)} required/>
-
+              <input className='form-control mb-3' type='email' name='email' placeholder={`${t("Email")}...`} required />
               <label htmlFor='message'>{t("Message")}</label>
-              <textarea className='form-control mb-3' name='body' placeholder={`${t("Message")}...`} 
-              value={body} onChange={(e) => setBody(e.target.value)} required/>
-              <Button className='btn btn-ag ag-blue' id="btn-contact" type="button" onClick={contactInfo}>{t("Send Message")}</Button>
-             <div id="spiner" className="d-none"><Space size="middle"> <Spin size="small"></Spin> </Space></div>
+              <textarea className='form-control mb-3' name='body' placeholder={`${t("Message")}...`} required />
+              <button type="submit" className="btn btn-sm btn-info text-white w-50 ">{t("Send Message")}</button>
             </form>
           </div>
         </div>

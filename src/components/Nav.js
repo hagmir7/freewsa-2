@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Header from "./Header";
 import MobileMenu from "./MobileMenu";
 import AuthTols from "./AuthTols";
+import Logo from '../assets/img/rounded-pill.webp'
 
 
 
@@ -12,7 +13,7 @@ function Nav() {
       <div className="navbar navbar-expand-lg p-0">
         <div className="d-flex justify-content-between w-100 px-3">
           <div>
-          <Link className="nav-item logo h4 p-2 m-0 mt-1 h1" to="/">Freewsad</Link>
+          <Link className="nav-item logo h4  m-0 my-1 h1" to="/"><img width='50px' height='50px' src={Logo} /></Link>
           </div>
           <Header />
           <AuthTols />

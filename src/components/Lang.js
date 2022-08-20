@@ -72,7 +72,7 @@ const Lang = () => {
             className="form-select form-select-sm lang"
         >
             {languages.map(item =>(
-                <option value={item.code}>{item.name}</option>
+                <option value={item.code} key={item.code}>{item.name}</option>
             ))}
          </select>
         </div>

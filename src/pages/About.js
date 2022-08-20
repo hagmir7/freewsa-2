@@ -10,7 +10,7 @@ function About() {
     <div className="About">
       <Helmet>
         <title>{t("About Us - FreeWsad")}</title>
-        <link rel='canonical' href="/policy" />
+        <link rel='canonical' href="/policy/" />
       </Helmet>
           <div className="container">
             <div className="row">

@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import LoadingDetail from '../components/LoadignDetail';
-import { UserInfo, UserInfoCard } from '../components/ProfileCard';
 import { UrlContext } from '../context/UrlContext';
+import { UserInfoCard } from '../components/profile/UserInfoCard';
+import { UserInofCardBio } from '../components/profile/UserInfoCardBio';
 
 
 export const Profile = () => {
     const { username } = useParams();
-    const [profile, setProfile] = useState(null);
     const [data, setData ] = useState(null)
     const {url, lang} = useContext(UrlContext);
     const history = useNavigate();
@@ -43,7 +43,7 @@ export const Profile = () => {
                 <div className="main-body">
                     <div className="row gutters-sm">
                         <div className='col-md-4'>
-                        <UserInfo
+                        <UserInofCardBio
                             username={data[0].username}
                             first_name={data[0].first_name}
                             last_name={data[0].last_name}

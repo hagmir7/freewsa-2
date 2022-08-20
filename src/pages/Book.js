@@ -60,7 +60,7 @@ function Book() {
                 data_item.map(item => (
                     <div key={item.slug} className="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2 mt-2 px-2">
                         <div className="card card-book shadow-sm overflow-hidden h-100 m-0">
-                            <Link to={`/book/${item.slug}`} className='h-100'>
+                            <Link to={`/book/${item.slug}/`} className='h-100'>
                                 <img className="h-100" src={item.image} width="100%" alt={item.title} />
                             </Link>
                         </div>

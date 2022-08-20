@@ -1,12 +1,10 @@
 import './App.css';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import Body from './components/Body';
 import About from './pages/About';
 import Policy from './pages/Policy';
 import Contact from './pages/Contact';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Detial from './pages/Detail';
 import { Helmet } from 'react-helmet-async';
 import Book from './pages/Book';
 import BookDetail from './pages/BookDetail';
@@ -24,6 +22,9 @@ import { AdminRoute } from './utils/AdminRoute';
 import { CreatePost } from './pages/CreatePost';
 import UrlProvider from './context/UrlContext';
 import coockies from 'js-cookie';
+import Posts from './components/dashboard/Posts';
+import PostContentCards from './components/post/PostContentCards';
+import PostDetial from './pages/PostDetail';
 
 
 
@@ -52,23 +53,24 @@ function App() {
 
               {/* <Route path="/" element={<PrivateRoute />} exact></Route> */}
               <Route path="/" exact element={<Home />} />
-              <Route path="/create-post" element={<AdminRoute />}>
+              <Route path="/post/create" element={<AdminRoute />}>
                 <Route path='' element={<CreatePost />}></Route>
               </Route>
 
-              <Route path="/admin/dashboard" element={<Dashboard />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/policy" element={<Policy />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/p/:slug" element={<Detial />} />
-              <Route path="/books" element={<Book />} />
+              <Route path="/admin/dashboard/" element={<Dashboard />} />
+              <Route path="/admin/posts/" element={<Posts />} />
+              <Route path="/about/" element={<About />} />
+              <Route path="/policy/" element={<Policy />} />
+              <Route path="/contact/" element={<Contact />} />
+              <Route path="/p/:slug" element={<PostDetial />} />
+              <Route path="/books/" element={<Book />} />
               <Route path="/book/:id" element={<BookDetail />} />
-              <Route path="/Menu" element={<Menu />} />
-              <Route path="/language" element={<Language />} />
-              <Route path='/accounts/login' element={<Login />} />
-              <Route path='/accounts/register' element={<Register />} />
-              <Route path='/:username' element={<Profile />} />
-              <Route path='/profile/:username' element={<UpdateProfile />} />
+              <Route path="/Menu/" element={<Menu />} />
+              <Route path="/language/" element={<Language />} />
+              <Route path='/accounts/login/' element={<Login />} />
+              <Route path='/accounts/register/' element={<Register />} />
+              <Route path='/user/:username/' element={<Profile />} />
+              <Route path='/profile/:username/' element={<UpdateProfile />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </AuthProvider>
@@ -85,7 +87,7 @@ export const Home = () => {
   return (
     <Fragment>
       <div className='container'>
-        < Body />
+        < PostContentCards />
       </div>
 
       <Helmet>
@@ -94,7 +96,7 @@ export const Home = () => {
         <meta name="author" content="freewsad.com" />
         <link rel='canonical' href="/" />
         <meta itemprop="image" content="%PUBLIC_URL%/favicon.webp" data-rh="true" />
-        <meta name="keywords" content="python,js,javascript,html,css,c++,c#,java,bootstrap,react,vuejs,anguler,reactjs,design,php,code,coding,templates,programming" />
+        <meta name="keywords" content="python,js,javascript,html,css,c++,c#,java,bootstrap,react,vuejs,anguler,reactjs,design,php" />
         <meta property="og:title" content="FreeWsad - The Best Website For Education" />
         <meta property="og:description" content="You can enjoy the Topics and Courses you love and download the original content, and share it all with your friends in FreeWsad." />
       </Helmet>

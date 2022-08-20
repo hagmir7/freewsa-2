@@ -11,7 +11,7 @@ function Policy() {
     <div className="Policy">
       <Helmet>
         <title>{t("Policy")} - FreeWsad</title>
-        <link rel='canonical' href="/policy" />
+        <link rel='canonical' href="/policy/" />
       </Helmet>
       <div className='container bg-light p-3 policy'>
         <h1 className="h3">{t("Privacy Policy")}</h1>
