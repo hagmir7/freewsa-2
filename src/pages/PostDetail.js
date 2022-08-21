@@ -1,10 +1,10 @@
 import {React, useContext, useEffect, useState} from 'react';
-import LoadingDetail from '../components/LoadignDetail';
 import { useNavigate, useParams } from "react-router-dom";
 import { UrlContext } from '../context/UrlContext';
 import PostDetialContent from '../components/post/PostDetailContent';
 import axios from 'axios';
 import { message } from 'antd';
+import PostDetailLoading from '../components/post/PostDetailLoading';
 
 function PostDetial({match}){
 
@@ -40,7 +40,8 @@ function PostDetial({match}){
       }).catch(error => {
         message.error('Loading Fail.')
         console.log(error);
-        // history('/')
+        history('/');
+        console.clear();
       })
     }
 
@@ -49,7 +50,7 @@ function PostDetial({match}){
         <div>
         <div className="container">
          <div className='row justify-content-center'>
-         {item?item:<LoadingDetail />}
+         {item?item:<PostDetailLoading />}
          </div>
         </div>
       </div>

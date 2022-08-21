@@ -1,10 +1,9 @@
 import { useTranslation } from "react-i18next";
 import coockies from 'js-cookie'
-import { useContext, useEffect } from "react";
-import { message } from 'antd';
+import React,{ useContext, useEffect } from "react";
+import { message, Select } from 'antd';
 import AuthContext from "../context/AuthContext";
-
-
+const { Option } = Select;
 
 const languages = [
     {
@@ -58,10 +57,27 @@ const Lang = () => {
             window.location.reload();
         };
 
-
     return (
-        <div className="small">
-            <select
+        <div>
+            <Select 
+                style={{ width: 120 }} 
+                defaultValue={i18n.language}
+                className="lang"
+                onChange={(lang)=>{
+                    i18n.changeLanguage(lang);
+                    success();
+                }}
+            >
+
+            {languages.map(item =>(
+                <Option value={item.code} key={item.code}>{item.name}</Option>
+            ))}
+                    
+            
+            </Select>
+
+
+            {/* <select
             value={i18n.language}
             onChange={(e) =>{
                 i18n.changeLanguage(e.target.value);
@@ -74,7 +90,7 @@ const Lang = () => {
             {languages.map(item =>(
                 <option value={item.code} key={item.code}>{item.name}</option>
             ))}
-         </select>
+         </select> */}
         </div>
     )
 }

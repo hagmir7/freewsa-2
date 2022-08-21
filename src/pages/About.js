@@ -14,7 +14,7 @@ function About() {
       </Helmet>
           <div className="container">
             <div className="row">
-            <div className='card shadow-sm p-3'>
+            <div className='card shadow-sm p-3 animate__animated animate__zoomIn animate__faster'>
             <h1 className="h4">{t("About Us")}.</h1>
             <p>We respect the property rights of others, and are always keen not to violate their rights, so authors and publishing houses have the right to demand the removal of a download link for a book from the site. If you find a book that belongs to you and do not agree to the publication of the download link for the book, or you have a suggestion or complaint, write to us through the Contact Us page, or by e-mail at: supprot@freewsad.com
             </p>

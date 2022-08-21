@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { UrlContext } from '../../context/UrlContext';
-import Loading from "../Loading"
+import PostCardLoading from './PostCardLading';
 
 
 function PostCardDetail(){
@@ -47,7 +47,7 @@ function PostCardDetail(){
     return(
         <div>
             <div className='row p-2 pb-3 justify-content-center'>
-                {items?items:<Loading />}
+                {items?items:<PostCardLoading />}
             </div>
         </div>
     )

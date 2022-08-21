@@ -58,7 +58,7 @@ function Contact() {
     <div className="bg-colors">
       <div className='container mb-4 p-3'>
         <div className='w-100 row justify-content-center'>
-          <div className='col-sm-12 col-md-10 col-lg-6 col-xl-6 card p-3 shadow-sm'>
+          <div className='col-sm-12 col-md-10 col-lg-6 col-xl-6 card p-3 shadow-sm animate__animated animate__zoomIn animate__faster'>
             <h1 className="h4">{t("Contact Us")}</h1>
             <form id="form-contact" onSubmit={SendMessage}>
               <label htmlFor='name'>{t("Name")}</label>

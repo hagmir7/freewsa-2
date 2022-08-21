@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Loading from '../Loading';
-import { Spin, Space, message } from 'antd';
+import PostCardLoading from './PostCardLading';
+import { Spin, Space, message, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { UrlContext } from '../../context/UrlContext';
 import coockies from 'js-cookie';
@@ -24,11 +24,8 @@ function PostCard() {
         const counter = loader + 12
         setLoder(counter)
         fetchItems();
-    }
 
-
-    //  Book Spener Function
-    const spin = () => {
+        // Desplay loader
         let btn = document.querySelector('#btn');
         let spiner = document.getElementById('spiner')
         btn.classList.toggle('d-none')
@@ -38,6 +35,8 @@ function PostCard() {
             spiner.classList.toggle('d-none')
         }, 3000)
     }
+
+
 
 
 
@@ -53,10 +52,10 @@ function PostCard() {
             const item = () => {
                 return (
                     data.map(item => (
-                        <div className="col-12 col-md-6 col-lg-4 mb-3" key={item.id}>
+                        <div className="col-12 col-md-6 col-lg-4 mb-3 loading" key={item.id}>
                             <Link to={`/p/${item.slug}/`}>
                                 {item.image ?
-                                    <img className="card-img-top m-0 p-0 border rounded" style={{ objectFit: 'contain' }} alt={item.title} src={item.image} sizes="25vw" />
+                                    <img className="card-img-top m-0 p-0 border rounded" style={{ objectFit: 'cover', height: '200px' }} alt={item.title} src={item.image} sizes="25vw" />
                                     :
                                     <div className="embed-responsive border rounded d-flex align-items-center" style={{ height: '200px' }} sizes="25vw">
                                         <div className="h3 text-black text-center m-auto">{item.title}</div>
@@ -92,9 +91,11 @@ function PostCard() {
     const { t } = useTranslation()
     return (
         <div className='last row p-2 pb-3'>
-            {items ? items : <Loading />}
+            {items ? items : <PostCardLoading />}
             <div className='d-flex justify-content-center mt-3'>
-                <button className='btn btn-info h1 text-white rounded-pill btn-sm' id='btn' onClick={laodMore} ><span onClick={spin}>{t("Loading More")}</span></button>
+            <Button type="primary" id='btn'  onClick={laodMore} >
+                 {t("Loading More")}
+            </Button>
                 <div className='d-none' id='spiner'><Space size="middle"><Spin size="large" /></Space></div>
             </div>
         </div>

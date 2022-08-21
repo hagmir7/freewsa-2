@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Spin, Space } from 'antd';
-import LoadingBook from '../components/LoadingBook';
+import BookCardLoading from '../components/book/BookCardLoading';
 import jsCookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
 import Lang from '../components/Lang';
@@ -58,7 +58,7 @@ function Book() {
         const item = () => {
             return (
                 data_item.map(item => (
-                    <div key={item.slug} className="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2 mt-2 px-2">
+                    <div key={item.slug}  className="book-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2 mt-2 px-2">
                         <div className="card card-book shadow-sm overflow-hidden h-100 m-0">
                             <Link to={`/book/${item.slug}/`} className='h-100'>
                                 <img className="h-100" src={item.image} width="100%" alt={item.title} />
@@ -77,7 +77,7 @@ function Book() {
             <div className='container-xxl p-0'>
                 <div className='last row p-2 pb-3'>
                     <Lang />
-                    {items ? items : <LoadingBook />}
+                    {items ? items : <BookCardLoading />}
                 </div>
                 <div className='d-flex justify-content-center'>
                     <button className='btn btn-info h1 text-white rounded-pill' id='btn' onClick={laodMore} ><span onClick={spin}>{t("Load More")}</span></button>  

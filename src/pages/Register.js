@@ -92,7 +92,7 @@ const Register = () => {
                         <img src={logo} alt="Freewsa" width="70px" />
                         <p className="h5 mb-1">{t("Create your account and start reading now")}</p>
                     </div>
-                    <div className="col-md-5 shadow-sm card p-3">
+                    <div className="col-md-5 shadow-sm card p-3 animate__animated animate__zoomIn animate__faster">
                         <form className="mt-2" onSubmit={sendUser}>
                             {error != null ? <div className="alert alert-danger">{error}</div> : ''}
                             <input type="text" name='username' className="form-control mb-3" placeholder={t("Username")} required />

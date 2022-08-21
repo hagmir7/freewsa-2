@@ -25,6 +25,9 @@ import coockies from 'js-cookie';
 import Posts from './components/dashboard/Posts';
 import PostContentCards from './components/post/PostContentCards';
 import PostDetial from './pages/PostDetail';
+import PostCardLoading from './components/post/PostCardLading';
+import PostDetailLoading from './components/post/PostDetailLoading';
+import BookCardLoading from './components/book/BookCardLoading';
 
 
 
@@ -71,6 +74,12 @@ function App() {
               <Route path='/accounts/register/' element={<Register />} />
               <Route path='/user/:username/' element={<Profile />} />
               <Route path='/profile/:username/' element={<UpdateProfile />} />
+              {/* Test Routes */}
+              <Route path='post/loading/test' element={<PostCardLoading />} />
+              <Route path='book/loading/test' element={<BookCardLoading />} />
+              <Route path='post/detail/loading/test' element={<PostDetailLoading />} />
+
+
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </AuthProvider>
