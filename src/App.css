@@ -365,13 +365,13 @@ h4 {
 
 @media only screen and (max-width: 576px) {
     .book-card {
-        height: 310px;
+        height: auto!important;
     }
 }
 
 @media only screen and (max-width: 768px) {
     .book-card {
-        height: 310px;
+        height: auto!important;
     }
 }
 

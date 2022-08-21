@@ -55,9 +55,9 @@ function PostCard() {
                         <div className="col-12 col-md-6 col-lg-4 mb-3 loading" key={item.id}>
                             <Link to={`/p/${item.slug}/`}>
                                 {item.image ?
-                                    <img className="card-img-top m-0 p-0 border rounded" style={{ objectFit: 'cover', height: '200px' }} alt={item.title} src={item.image} sizes="25vw" />
+                                    <img className="border rounded w-100" style={{ objectFit: 'contain', height: '200px' }} alt={item.title} src={item.image} sizes="25vw" />
                                     :
-                                    <div className="embed-responsive border rounded d-flex align-items-center" style={{ height: '200px' }} sizes="25vw">
+                                    <div className="border rounded d-flex align-items-center" style={{ height: '200px' }} sizes="25vw">
                                         <div className="h3 text-black text-center m-auto">{item.title}</div>
                                     </div>
                                 }
