@@ -1,12 +1,20 @@
-import { React, Fragment } from 'react';
+import { React, Fragment, useContext } from 'react';
 import GoogleAd from '../../ads/GoogleAd';
 import PostCardDetail from './PostCardDetail';
 import { Helmet } from 'react-helmet-async';
+import PostDelete from './PostDelete';
+import AuthContext from '../../context/AuthContext';
+
+
+
+
 
 
 
 
 function PostDetialContent(props) {
+
+    const {user, authTokens} = useContext(AuthContext); 
 
     const image = ()=>{
         return(
@@ -31,22 +39,28 @@ function PostDetialContent(props) {
                             </div>
                         </div>
                         <GoogleAd slot="4567237334" googleAdId="ca-pub-6043226569102012"/>
+                        {
+                            
+                            authTokens ? user.is_superuser ? <PostDelete id={props.id} /> : '' : ''
+                        }
+                        
                     </div>
                 </div>
                 <Helmet>
                     <title>{props.title}</title>
                     <meta name="description" content={props.description.slice(0,159)} ></meta>
-                    <link rel='canonical' href={`/p/${props.slug}`} />
+                    <link rel='canonical' href={`/p/${props.slug}/`} />
                     <meta itemprop="image" content={props.ifImage} />
                     <meta name="keywords" content={props.tags}/>
                     {/* Open graph */}
                     <meta property="og:title" content={props.title} />
                     <meta property="og:description" content={props.description.slice(0,159)} />
                     <meta property="og:type" content="article" />
-                    <meta property="og:url" content={`/p/${props.slug}`} />
+                    <meta property="og:url" content={`/p/${props.slug}/`} />
                     <meta property="og:image" content={ifImage} />
                 </Helmet>
-                <PostCardDetail />
+                    <PostCardDetail />
+                
             </div>
         </Fragment>
     ) 

@@ -303,6 +303,11 @@ h4 {
     line-height: 1.5rem
 }
 
+.ant-list-item-meta-avatar {
+    margin-right: 0.25rem!important;
+    margin-left: 0.25rem!important;
+}
+
 .description {
     font-size: 1rem;
     line-height: 1.4rem
@@ -327,6 +332,10 @@ h4 {
     min-height: 1.6rem;
     border-radius: 4px;
     animation-delay: .05s
+}
+
+a.jodit-status-bar-link {
+    display: none;
 }
 
 .loading .description {

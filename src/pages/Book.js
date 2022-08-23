@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Spin, Space } from 'antd';
+import { Spin, Space, Button } from 'antd';
 import BookCardLoading from '../components/book/BookCardLoading';
 import jsCookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
 import Lang from '../components/Lang';
+import { UrlContext } from '../context/UrlContext';
+
 
 
 function Book() {
@@ -21,18 +23,14 @@ function Book() {
 
     
 
-
+    const {url} = useContext(UrlContext);
     const {t} = useTranslation()
      // Load More
     const laodMore = async () => {
         const counter = loader + 12
         setLoder(counter)
         fetchItems();
-    }
 
-
-    //  Book Spener Function
-    const spin = ()=>{
         let btn = document.querySelector('#btn');
         let spiner = document.getElementById('spiner')
         btn.classList.toggle('d-none')
@@ -42,14 +40,15 @@ function Book() {
             spiner.classList.toggle('d-none')
         },3000)
     }
-  
+
+
     
 
 
 
     const [items, setItems] = useState(null);
     const fetchItems = async () => {
-        const data = await fetch(`https://www.freedaz.com/${currentLanguageCode}/api/books/${loader}/`);
+        const data = await fetch(`${url + currentLanguageCode}/api/books/${loader}/`);
 
         const items = await data.json();
         const data_item = items.data;
@@ -80,8 +79,11 @@ function Book() {
                     {items ? items : <BookCardLoading />}
                 </div>
                 <div className='d-flex justify-content-center'>
-                    <button className='btn btn-info h1 text-white rounded-pill' id='btn' onClick={laodMore} ><span onClick={spin}>{t("Load More")}</span></button>  
-                    <div className='d-none' id='spiner'><Space size="middle"><Spin size="large" /></Space></div>
+                <Button type="primary" id='btn'  onClick={laodMore} >
+                  {t("Loading More")}
+                </Button>
+                <div className='d-none' id='spiner'><Space size="middle"><Spin size="large" /></Space></div>
+
                 </div>
             </div>
             <Helmet>

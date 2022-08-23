@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }) => {
           setInfo(response.data[0]);
           setProfile(response.data[1]);
       }).catch(error =>{
-          console.log(error)
+          // console.clear();
       });
   }
 

@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { UrlContext } from '../../context/UrlContext';
+import RandomColors from '../RandomColors';
 import PostCardLoading from './PostCardLading';
 
 
@@ -23,7 +24,7 @@ function PostCardDetail(){
                             {item.image ?
                                 <img className="card-img-top m-0 p-0 border rounded" style={{ objectFit: 'contain' }} alt={item.title} src={item.image} sizes="25vw" />
                                 :
-                                <div className="embed-responsive border rounded d-flex align-items-center" style={{ height: '200px' }} sizes="25vw">
+                                <div style={{ height: '200px', background:RandomColors() }} className="embed-responsive border rounded d-flex align-items-center" sizes="25vw">
                                     <div className="h3 text-black text-center m-auto">{item.title}</div>
                                 </div>
                             }

@@ -25,7 +25,6 @@ function PostDetial({match}){
           Accept: 'application/json, text/plain, */*'
         }
       }).then(response => {
-        console.log(response.data)
         const post = response.data.data;
         const data = ()=>{
           return (
@@ -39,7 +38,6 @@ function PostDetial({match}){
 
       }).catch(error => {
         message.error('Loading Fail.')
-        console.log(error);
         history('/');
         console.clear();
       })

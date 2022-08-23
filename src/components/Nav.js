@@ -13,7 +13,7 @@ function Nav() {
       <div className="navbar navbar-expand-lg p-0">
         <div className="d-flex justify-content-between w-100 px-3">
           <div>
-          <Link className="nav-item logo h4  m-0 my-1 h1" to="/"><img width='45px' height='45px' src={Logo} /></Link>
+          <Link className="nav-item logo h4  m-0 my-1 h1" to="/"><img width='45px' height='45px' title='Freewsad' loading='eager' src={Logo} alt="Freewsad" /></Link>
           </div>
           <Header />
           <AuthTols />

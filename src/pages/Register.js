@@ -55,7 +55,6 @@ const Register = () => {
             const data = await fetchItem.json();
             if (fetchItem.status === 200) {
                 if(!data.error){
-                    console.log(data.message)
                     loginUser(event.target.username.value, event.target.password.value);
                     history('/');
                 }else{

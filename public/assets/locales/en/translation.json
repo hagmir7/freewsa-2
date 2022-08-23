@@ -36,6 +36,9 @@
   "lang_chang_msg" : " language has been successfully changed. ",
   "Language changed successfully!": "Language changed successfully!",
   "Enter your email to download": "Enter you email to download",
-  "Enter your email please..!": "Enter your email please..!"
+  "Enter your email please..!": "Enter your email please..!",
+  "Create new post": "Create new post",
+  "Delete" : "حذف"
+  
 
 }

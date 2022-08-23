@@ -69,7 +69,18 @@
     "Bio": "نبذة",
     "Log in to manage your account": "تسجيل الدخول لإدارة حسابك",
     "Create your account and start reading now":"قم بإنشاء حسابك وابدأ القراءة الآن",
-    "Enter your password": "أدخل كلمة المرور"
+    "Enter your password": "أدخل كلمة المرور",
+    "Create new post": "كتابة مقال جديد",
+    "Show Image" : "عرض الصورة",
+    "Title": "عنوان",
+    "Category" : "صنف",
+    "Description" : "وصف",
+    "Tags" : "علامات",
+    "Start writing": "ابدأ الكتابة",
+    "Publish" : "نشر",
+    "Update" : "تعديل",
+    "Dashboard" : "لوحة التحكم",
+    "Are you sur you want to delete The Post" : "هل أنت متأكدم من حذف المقال"
 
 
 

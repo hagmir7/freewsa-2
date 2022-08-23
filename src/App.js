@@ -28,6 +28,8 @@ import PostDetial from './pages/PostDetail';
 import PostCardLoading from './components/post/PostCardLading';
 import PostDetailLoading from './components/post/PostDetailLoading';
 import BookCardLoading from './components/book/BookCardLoading';
+import UpdatePost from './pages/UpdatePost';
+import CreateBook from './pages/CreateBook';
 
 
 
@@ -54,18 +56,36 @@ function App() {
 
             <Routes>
 
-              {/* <Route path="/" element={<PrivateRoute />} exact></Route> */}
+
               <Route path="/" exact element={<Home />} />
+              {/* Admin Routes */}
               <Route path="/post/create" element={<AdminRoute />}>
                 <Route path='' element={<CreatePost />}></Route>
               </Route>
 
-              <Route path="/admin/dashboard/" element={<Dashboard />} />
-              <Route path="/admin/posts/" element={<Posts />} />
+              <Route path="/admin/dashboard/" element={<AdminRoute />}>
+                <Route path='' element={<Dashboard />}></Route>
+              </Route>
+
+              <Route path="/post/update/:id" element={<AdminRoute />}>
+                <Route path='' element={<UpdatePost />}></Route>
+              </Route>
+
+              <Route path="/admin/posts/" element={<AdminRoute />}>
+                <Route path='' element={<Posts />}></Route>
+              </Route>
+
+
+              <Route path="/book/create" element={<AdminRoute />}>
+                <Route path='' element={<CreateBook />}></Route>
+              </Route>
+              {/* Routes */}
+              
               <Route path="/about/" element={<About />} />
               <Route path="/policy/" element={<Policy />} />
               <Route path="/contact/" element={<Contact />} />
               <Route path="/p/:slug" element={<PostDetial />} />
+             
               <Route path="/books/" element={<Book />} />
               <Route path="/book/:id" element={<BookDetail />} />
               <Route path="/Menu/" element={<Menu />} />

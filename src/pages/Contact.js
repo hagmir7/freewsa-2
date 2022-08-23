@@ -33,7 +33,6 @@ function Contact() {
     const email = formData.get('email');
     const name = formData.get('name');
     const body = formData.get('body');
-    console.log(body)
     if (email !== "" && name !== "" && body !== "") {
       axios({
         method: 'post',

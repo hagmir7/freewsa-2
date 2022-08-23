@@ -1,10 +1,11 @@
 
-import {React, useEffect, useState} from 'react';
+import {React, useContext, useEffect, useState} from 'react';
 import BookDetailContent from '../components/BookDetailContent';
 import LoadingDetail from '../components/LoadignDetail';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import NotFoundPage from './NotFoundPage';
+import { UrlContext } from '../context/UrlContext';
 
 
 const BookDetail = ({match})=>{
@@ -15,6 +16,7 @@ const BookDetail = ({match})=>{
     },[]);
 
     const history = useNavigate();
+    const {url, lang} = useContext(UrlContext)
     
     const [item, setItem] = useState(null);
     const { id } = useParams();
@@ -27,7 +29,7 @@ const BookDetail = ({match})=>{
     const fetchItem = async () =>{
       axios({
         method: 'GET',
-        url: `https://www.freedaz.com/en/api/book/${id}?format=json`,
+        url: `${url + lang}/api/book/${id}?format=json`,
       }).then((response => {
 
         const item = response.data;
@@ -36,7 +38,7 @@ const BookDetail = ({match})=>{
             <BookDetailContent
              name={item.name} image={item.image} description={item.description} id={id}
              data={item.date} tags={item.tags} pages={item.pages} book_file={item.file}
-             language={item.language} type_file={item.book_type}
+             language={item.language} type_file={item.file_type}
             />
           )
         }
