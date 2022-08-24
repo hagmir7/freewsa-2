@@ -42,6 +42,7 @@ export const CreatePost = () => {
     const [languageOptions, setLanguageOptions] = useState(null);
     const [categoryOptions, setcategoryOptions] = useState(null);
     const [listOption, setListOption] = useState(null);
+    const [display, setDisplay] = useState(false)
 
     // Fretch Language
     const fetchLanguageOptions = () => {
@@ -127,7 +128,13 @@ export const CreatePost = () => {
     }
 
     const addImage = (e)=>{
-        setImage(URL.createObjectURL(e.target.files[0]));
+        if(e.target.files.length > 0 ){
+            setImage(URL.createObjectURL(e.target.files[0]));
+            setDisplay(true)
+        }else{
+            setDisplay(false)
+        }
+        
     }
 
     const ShowImage = () => {
@@ -175,7 +182,7 @@ export const CreatePost = () => {
                     <form onSubmit={createPost} id="post-form">
                         <input type="text" placeholder={t("Title")} maxLength={100} name="title" className="form-control mt-3" required />
                         <input type="file" onChange={addImage} name="image" accept='image/*' className="form-control mt-3" />
-                        <ShowImage />
+                            {display ? <ShowImage />: null } 
                         <input type="text" name="tags" placeholder={t("Tags")} maxLength={150} className="form-control mt-3" required />
                         <select className='form-select mt-3' name='language' required onChange={fetchCategoryOptions}>
                             <option value={1} >{t("Language")}</option>

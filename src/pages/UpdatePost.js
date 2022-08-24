@@ -14,6 +14,7 @@ export default function UpdatePost() {
     useEffect(() => {
         fetchLanguageOptions();
         getPost();
+        window.scrollTo(0, 0)
     
         
     }, []);
@@ -23,13 +24,15 @@ export default function UpdatePost() {
     const { url, lang } = useContext(UrlContext);
     // 
 
-    const [image, setImage ] = useState(null);
+    const [image, setImage ] = useState(false);
 
     const [slug, setSlug] = useState(null)
 
     const { id } = useParams()
 
     const history = useNavigate()
+
+    const [display , setDisplay] = useState(false)
     
     // Editor tools
     const editor = useRef(null);
@@ -51,7 +54,7 @@ export default function UpdatePost() {
        const [categoryOptions, setcategoryOptions] = useState(null);
 
     // Fretch Language
-    const fetchLanguageOptions = () => {
+    const fetchLanguageOptions =  async () => {
         axios.get(`${url + lang }/api/post/language/`, {
             'Content-Type': 'application/json',
         }).then(function (response, success) {
@@ -70,7 +73,7 @@ export default function UpdatePost() {
     }
 
     // Featch Category
-    const fetchCategoryOptions = (value) => {
+    const fetchCategoryOptions = async (value) => {
         if(value != ''){
             axios.get(`${url + lang }/api/post/category/${value}`, {
                 'Content-Type': 'application/json'
@@ -111,7 +114,7 @@ export default function UpdatePost() {
 
     
     // Get data for update
-    const getPost = ()=>{
+    const getPost = async ()=>{
         axios.get(`${url + lang }/api/post/id/`+id, {
             headers: {
                 'Content-Type': 'application/json'
@@ -139,7 +142,7 @@ export default function UpdatePost() {
 
 
     // Send data to server
-    const updatePost = (event) => {
+    const updatePost = async (event) => {
         event.preventDefault();
         addSpener();
         const form = document.getElementById('post-form')
@@ -167,7 +170,14 @@ export default function UpdatePost() {
 
 
     const addImage = (e) => {
-        setImage(URL.createObjectURL(e.target.files[0]));
+        if(e.target.files.length > 0 ){
+            setDisplay(true);
+            setImage(URL.createObjectURL(e.target.files[0]));
+        }else{
+            setDisplay(false);
+            setImage(false)
+        }
+        
     }
 
     const ShowImage = () => {
@@ -197,7 +207,7 @@ export default function UpdatePost() {
             <form onSubmit={updatePost} id="post-form">
                 <input type="text" placeholder={t("Title")} maxLength={100} name="title" id="title" className="form-control mt-3" required />
                 <input type="file" id='image' onChange={addImage} name="image" accept='image/*' className="form-control mt-3" />
-                <ShowImage />
+                {display ? <ShowImage /> : image ? <ShowImage /> : null }
                 <input type="text" id='tags' name="tags" placeholder={t("Tags")} maxLength={150} className="form-control mt-3" required />
                 <select id='language' className='form-select mt-3' name='language' required onChange={((event) => { fetchCategoryOptions(event.target.value) })}>
                     <option value="" >{t("Language")}</option>

@@ -68,7 +68,7 @@ const Dashboard = () => {
     return (
         <>
             <div className="container mb-2">
-                <div className="row">
+                <div className="row justify-content-center">
                     <div className="col-8  p-2">
                         <div className="row">
                             <Cards item="Book" list='/admin/books' count={data.books} addText="New Book" link="/book/create" />
@@ -79,7 +79,6 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

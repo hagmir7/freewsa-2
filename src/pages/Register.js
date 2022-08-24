@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import logo from '../assets/img/logo-rounded-pill.webp';
@@ -11,7 +11,9 @@ import { LoadingOutlined } from '@ant-design/icons';
 
 
 const Register = () => {
-
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+      }, [])
 
     const history = useNavigate();
     const { loginUser } = useContext(AuthContext);

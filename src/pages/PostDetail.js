@@ -7,14 +7,17 @@ import { message } from 'antd';
 import PostDetailLoading from '../components/post/PostDetailLoading';
 
 function PostDetial({match}){
+  const { slug } = useParams();
+
 
   const {lang, url} = useContext(UrlContext)
     useEffect(() => {
         fetchItem();
-    },[]);
+        window.scrollTo(0, 0)
+    },[slug]);
 
 
-    const { slug } = useParams();
+    
 
     const history = useNavigate()
     

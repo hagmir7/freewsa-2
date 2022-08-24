@@ -1,10 +1,14 @@
-import {React} from "react";
+import {React, useEffect} from "react";
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from "react-i18next";
 
 
 
 function About() {
+  useEffect(()=>{
+    window.scrollTo(0, 0)
+  }, [])
+
   const {t} = useTranslation()
   return (
     <div className="About">

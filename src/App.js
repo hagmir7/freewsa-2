@@ -35,6 +35,7 @@ import CreateBook from './pages/CreateBook';
 
 
 
+
 function App() {
 
 
@@ -55,7 +56,6 @@ function App() {
           <Nav />
 
             <Routes>
-
 
               <Route path="/" exact element={<Home />} />
               {/* Admin Routes */}
@@ -113,6 +113,9 @@ function App() {
 }
 
 export const Home = () => {
+  useEffect(()=>{
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <Fragment>
       <div className='container'>
