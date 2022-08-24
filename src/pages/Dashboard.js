@@ -30,7 +30,6 @@ const Cards = (props) => {
 
 
 const Dashboard = () => {
-
     useEffect(() => {
         getDashboardata();
       }, [])
