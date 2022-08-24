@@ -109,8 +109,8 @@ export const CreatePost = () => {
         if (content.length > 100) {
             axios.post(`${url + lang }/api/post/create/`, dataForm, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Bearer ' + String(authTokens.access)
+                    'Content-Type': 'application/json',
+                    // 'Authorization': 'Bearer ' + String(authTokens.access)
 
                 }
             }).then(function (data, sucess, state) {

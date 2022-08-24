@@ -1,6 +1,5 @@
 import React, { createContext, useState } from 'react'
 import coockies from 'js-cookie';
-
 export const UrlContext = createContext()
 
 
