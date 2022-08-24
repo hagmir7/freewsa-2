@@ -39,7 +39,7 @@ const BookDetailContent = (props) => {
                             <tbody>
                                 <tr>
                                     <th scope="row">{t("Author")}</th>
-                                    <td>books.goalkicker.com</td>
+                                    <td>{props.author}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">{t("File type")}</th>

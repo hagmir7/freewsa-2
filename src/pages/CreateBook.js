@@ -143,9 +143,8 @@ export default function CreateBook() {
             <div className="col-md-6">
                 <h1 className='h3' dir='auto'>Publish new book</h1>
                 <form onSubmit={CreateBook}>
-
-                    <input className='form-control mt-2' type="text" name='name' id='name' placeholder={t("Book name")+ '...'} required/>
-                    <input className='form-control mt-2' type="text" name='author' id='author' placeholder={t("Auther")+ '...'} required/>
+                    <input className='form-control mt-2' maxLength={80} type="text" name='name' id='name' placeholder={t("Book name")+ '...'} required/>
+                    <input className='form-control mt-2' maxLength={50} type="text" name='author' id='author' placeholder={t("Auther")+ '...'} required/>
                     <input className='form-control mt-2' type="number" name='pages' id='pages' placeholder={t("Pages")+ '...'} required/>
                     <select name="language" id="language" onChange={getCategry} className='form-select mt-2' required>
                         <option value="">Language</option>
@@ -167,11 +166,11 @@ export default function CreateBook() {
                         <option value="">{t("Play list")}</option>
                         {listOption}
                     </select>
-                    <label htmlFor="image" className='mt-2 fs-6'>{t("Image")}</label>
+                    <label htmlFor="image"  className='mt-2 fs-6'>{t("Image")}</label>
                     <input className='form-control' type="file" name="image" accept='image/*' id="image" required/>
                     <label htmlFor="file" className='mt-2 fs-6'>{t("File")}</label>
-                    <input className='form-control' type="file" name="file" id="file"  required/>
-                    <textarea name="description" id="description" cols="30" rows="5" placeholder={t("Description")+'...'} className='form-control mt-2'></textarea>
+                    <input className='form-control' type="file" accept='.doc,.docx,.pdf,.txt,.zip,.rar' name="file" id="file"  required/>
+                    <textarea maxLength={300} name="description" id="description" cols="30" rows="5" placeholder={t("Description")+'...'} className='form-control mt-2'></textarea>
                     <button type='submit' id='create-book-btn' className='mt-3 btn btn-primary w-100'>
                         <span id='create-book'>{t("Publish")}</span>
                         <LoadingOutlined className="d-none" id="create-book-box" style={{ fontSize: 24 }} />
