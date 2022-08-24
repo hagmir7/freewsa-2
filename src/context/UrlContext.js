@@ -8,13 +8,14 @@ export const UrlContext = createContext()
 
 export default function UrlProvider({children}) {
 
-    const [url, setUrl ] = useState('')
+    const [url, setUrl ] = useState('https://www.freedaz.com/')
 
-    if (! '%NODE_ENV%' || '%NODE_ENV%' === 'development') {
-        setUrl("https://www.freedaz.com/")
-    } else {
-        setUrl("http://127.0.0.1:8000/")
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    //     setUrl("https://www.freedaz.com/")
+    //     console.log("Develpmnt")
+    // } else {
+    //     setUrl("http://127.0.0.1:8000/")
+    // }
 
 
     const URL = {
