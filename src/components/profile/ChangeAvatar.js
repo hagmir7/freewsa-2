@@ -34,17 +34,15 @@ export default function ChangeAvatar() {
                 'content-type': 'multipart/form-data'
             }
 
-        })
-            .then(res => {
-                message.success(t("Avatar updated successfully"))
-                removeSpener('avatar')
-            }).catch(err => {
-                removeSpener('avatar');
-                message.error(t("Can't updated Avatar."));
+        }).then(res => {
+            message.success(t("Avatar updated successfully"))
+            removeSpener('avatar')
+            event.target.reset();
+        }).catch(err => {
+            removeSpener('avatar');
+            message.error(t("Can't updated Avatar."));
             }
-
-
-            )
+        )
     };
 
 

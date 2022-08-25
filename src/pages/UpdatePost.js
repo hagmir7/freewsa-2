@@ -74,7 +74,7 @@ export default function UpdatePost() {
 
     // Featch Category
     const fetchCategoryOptions = async (value) => {
-        if(value != ''){
+        if(value !== ''){
             axios.get(`${url + lang }/api/post/category/${value}`, {
                 'Content-Type': 'application/json'
             }).then(function (response, success) {
@@ -82,7 +82,7 @@ export default function UpdatePost() {
                 const getOptions = () => {
                     return (
                         data.map(function(item){
-                            if(value == item.id){
+                            if(value === item.id){
                                 return <option key={item.id} selected value={item.id}>{item.name}</option>
                             }else{
                                 return <option key={item.id} value={item.id}>{item.name}</option>
@@ -136,7 +136,7 @@ export default function UpdatePost() {
             }, 1000)
 
         }).catch(error => {
-            console.log(error)
+           message.error(error.message)
         })
     }
 

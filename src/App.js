@@ -30,6 +30,7 @@ import PostDetailLoading from './components/post/PostDetailLoading';
 import BookCardLoading from './components/book/BookCardLoading';
 import UpdatePost from './pages/UpdatePost';
 import CreateBook from './pages/CreateBook';
+import LanguageProvider from './context/LanguageContext';
 
 
 
@@ -53,6 +54,7 @@ function App() {
       <BrowserRouter>
       <UrlProvider>
         <AuthProvider>
+          <LanguageProvider >
           <Nav />
 
             <Routes>
@@ -102,6 +104,7 @@ function App() {
 
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
+            </LanguageProvider>
         </AuthProvider>
         </UrlProvider>
         <Footer />

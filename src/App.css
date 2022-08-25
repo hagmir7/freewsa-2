@@ -90,24 +90,24 @@ p {
     max-height: 500px;
   }
 
-.code::-webkit-scrollbar {
+.code,.list-scroll::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   
   /* Track */
-.code::-webkit-scrollbar-track {
+.code,.list-scroll::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
   
   /* Handle */
-.code::-webkit-scrollbar-thumb {
+.code,.list-scroll::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 5px;
   }
   
   /* Handle on hover */
-.code::-webkit-scrollbar-thumb:hover {
+.code,.list-scroll::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
 
@@ -365,6 +365,11 @@ a.jodit-status-bar-link {
 
 }
 
+.list-scroll{
+    max-height: 300px;
+    overflow: auto;
+}
+
 /* iframe {
     display: none !important;
 } */
@@ -372,6 +377,9 @@ a.jodit-status-bar-link {
 
 /* Media Query */
 
+.anticon-close-circle svg{
+    margin-top: -8px;
+}
 @media only screen and (max-width: 576px) {
     .book-card {
         height: auto!important;

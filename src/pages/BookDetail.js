@@ -2,7 +2,7 @@
 import {React, useContext, useEffect, useState} from 'react';
 import BookDetailContent from '../components/BookDetailContent';
 import LoadingDetail from '../components/LoadignDetail';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import NotFoundPage from './NotFoundPage';
 import { UrlContext } from '../context/UrlContext';
@@ -15,7 +15,6 @@ const BookDetail = ({match})=>{
         fetchItem();
     },[]);
 
-    const history = useNavigate();
     const {url, lang} = useContext(UrlContext)
     
     const [item, setItem] = useState(null);

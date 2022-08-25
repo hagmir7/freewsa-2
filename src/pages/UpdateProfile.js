@@ -25,9 +25,7 @@ export const UpdateProfile = () => {
     const history = useNavigate();
     const {url, lang} = useContext(UrlContext);
 
-    useEffect(() => {
-        getUserInfo()
-    }, [])
+
 
 
     let getUserInfo = async () => {
@@ -44,6 +42,10 @@ export const UpdateProfile = () => {
             history('/accounts/login');
         }
     }
+
+    useEffect(() => {
+        getUserInfo()
+    }, [])
 
 
     const Html = () => {

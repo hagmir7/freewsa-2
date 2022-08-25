@@ -24,7 +24,7 @@ export default function PostDelete(props) {
                 message.success(respons.data.message);
                 history('/');
             }).then(error =>{
-                console.log(error.data.message)
+                message.error(t("Fail to delete Post."))
             })
         }
     }

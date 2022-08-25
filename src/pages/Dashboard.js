@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { UrlContext } from "../context/UrlContext";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 
 const Cards = (props) => {
@@ -33,6 +34,8 @@ const Dashboard = () => {
     useEffect(() => {
         getDashboardata();
       }, [])
+
+      const {t} = useTranslation();
     
     
     const {url, lang} = useContext(UrlContext);
@@ -70,10 +73,10 @@ const Dashboard = () => {
                 <div className="row justify-content-center">
                     <div className="col-8  p-2">
                         <div className="row">
-                            <Cards item="Book" list='/admin/books' count={data.books} addText="New Book" link="/book/create" />
-                            <Cards item="Post" list='/admin/posts' count={data.posts} addText="New Post" link="/post/create" />
-                            <Cards item="Product" list='/admin/products' count={data.products} addText="New Product" link="/create-product" />
-                            <Cards item="Template" list='/admin/templates' count={data.templates} addText="New Template" link="/create-template" />
+                            <Cards item={t("Book")} list='/admin/books' count={data.books} addText={t("New Book")} link="/book/create" />
+                            <Cards item={t("Article")} list='/admin/posts' count={data.posts} addText={t("New Article ")} link="/post/create" />
+                            <Cards item={t("Product")} list='/admin/products' count={data.products} addText={t("New Product")} link="/create-product" />
+                            <Cards item={t("Template")} list='/admin/templates' count={data.templates} addText={t("New Template")} link="/create-template" />
                         </div>
                     </div>
                 </div>

@@ -81,7 +81,22 @@
     "Update" : "تعديل",
     "Dashboard" : "لوحة التحكم",
     "Are you sur you want to delete The Post" : "هل أنت متأكدم من حذف المقال",
-    "Delete" : "حذف"
+    "New Book" : "كتاب جديد",
+    "New Article" : "مقال جديد",
+    "New Template" : "قالب جديد",
+    "New Product" : "منتج جديد",
+    "Article" : "مقال",
+    "Book" : "كتاب",
+    "Articles" : "مقالات",
+    "Template" : "قالب",
+    "Product" : "منتج",
+    "Book name" : "إسم الكتاب",
+    "Book file" : "ملف الكتاب",
+    "Play list" : "قائمة التشغيل",
+    "File":"ملف",
+    "Image": "صورة",
+    "Publish new book": "نشر كتاب جديد",
+    "Delete": "حذف"
 
 
 
