@@ -83,31 +83,31 @@ p {
     font-family: Consolas,Courier New,monospace;
     font-size: 13px;
     font-weight: 500;
-    line-height: 19px;
+    line-height: 6px;
     overflow: auto;
     padding: 0.5rem!important;
     white-space: pre;
     max-height: 500px;
   }
 
-.code,.list-scroll::-webkit-scrollbar {
+  .list-scroll, .code::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   
   /* Track */
-.code,.list-scroll::-webkit-scrollbar-track {
+.list-scroll, .code::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
   
   /* Handle */
-.code,.list-scroll::-webkit-scrollbar-thumb {
+.list-scroll, .code::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 5px;
   }
   
   /* Handle on hover */
-.code,.list-scroll::-webkit-scrollbar-thumb:hover {
+.list-scroll, .code::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
 

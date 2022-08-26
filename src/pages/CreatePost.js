@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { UrlContext } from '../context/UrlContext';
 import { LoadingOutlined } from '@ant-design/icons';
 import JoditEditor from "jodit-react";
-import { Button, Image, message } from 'antd';
+import { Button, Image as ImageTag , message } from 'antd';
 import CreateLanguage from '../components/CreateLanguage';
 import CreateCategory from '../components/CreateCategory';
 
@@ -18,9 +18,10 @@ export const CreatePost = () => {
     const [spenner, setSpenner] = useState(false);
 
 
+
+
     // Editor tools
     const editor = useRef(null);
-    const [content, setContent] = useState("");
 
     const config = {
         readonly: false,
@@ -96,24 +97,28 @@ export const CreatePost = () => {
 
     // Send data to server
     const createPost = (event) => {
+        const body = document.querySelector('.jodit-wysiwyg');
         event.preventDefault();
         setSpenner(true);
         const form = document.getElementById('post-form')
         let dataForm = new FormData(form);
-        dataForm.append('body', content)
+        dataForm.append('body', body.innerHTML)
 
-        if (content.length > 100) {
+        if (body.innerHTML.length > 100) {
             axios.post(`${url + lang}/api/post/create/`, dataForm, {
                 headers: {
-                    'Content-Type': 'application/json',
+                    // 'Content-Type': 'application/json',
+                    'Content-Type': 'multipart/form-data',
 
                 }
-            }).then(function (data, sucess, state) {
+            }).then(function (data) {
+                document.querySelector('.jodit-wysiwyg').textContent = ''
                 message.success(data.data.message);
                 setSpenner(false)
                 form.reset();
-                setContent('');
+         
             }).catch(function (error) {
+                console.log(error)
                 setSpenner(false)
             });
         } else {
@@ -124,8 +129,30 @@ export const CreatePost = () => {
 
     const addImage = (e) => {
         if (e.target.files.length > 0) {
-            setImage(URL.createObjectURL(e.target.files[0]));
+            // setImage(URL.createObjectURL(e.target.files[0]));
             setImageDisplay(true)
+
+
+            const src = URL.createObjectURL(e.target.files[0]);
+            // Start converting 
+            let canvase = document.createElement('canvas');
+            let ctx = canvase.getContext('2d');
+        
+        
+            const newImage = new Image();
+            newImage.src = src;
+        
+            newImage.onload = function(){
+                canvase.width = newImage.width;
+                canvase.height = newImage.height;
+                ctx.drawImage(newImage, 0, 0);
+        
+                // convet to webp
+                const webpImage = canvase.toDataURL("image/webp", 1);
+                setImage(webpImage);
+        
+            }
+
         } else {
             setImageDisplay(false)
         }
@@ -136,7 +163,7 @@ export const CreatePost = () => {
         return (
             <div>
                 <Button type="primary" className='mt-2' onClick={() => setVisible(true)}>{t('Show Image')}</Button>
-                <Image width={200} style={{ display: 'none', }}
+                <ImageTag width={200} style={{ display: 'none', }}
                     src={image}
                     preview={{
                         visible,
@@ -184,7 +211,7 @@ export const CreatePost = () => {
                     <h1 className='h4'>{t("Create new post")}</h1>
                     <form onSubmit={createPost} id="post-form">
                         <input type="text" placeholder={t("Title")} maxLength={100} name="title" className="form-control mt-3" required />
-                        <input type="file" onChange={addImage} name="image" accept='image/*' className="form-control mt-3" />
+                        <input type="file" name='image' onChange={addImage}  accept='image/*' className="form-control mt-3" />
                         {imageDisplay ? <ShowImage /> : null}
                         <input type="text" name="tags" placeholder={t("Tags")} maxLength={150} className="form-control mt-3" required />
                         <div className="d-flex mt-2">
@@ -222,11 +249,13 @@ export const CreatePost = () => {
                     <div className='mt-2'>
                         <JoditEditor
                             ref={editor}
-                            value={content}
                             config={config}
                             placeholder="Start Typeing"
                             tabIndex={1}
-                            onBlur={(newContent) => setContent(newContent)}
+                            // onChange={(newContent) => setContent(newContent)}
+                            // onBlur={(newContent) => setContent(newContent)}
+                            
+                            
                         />
                     </div>
                 </div>

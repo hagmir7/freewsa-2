@@ -145,9 +145,10 @@ export default function UpdatePost() {
     const updatePost = async (event) => {
         event.preventDefault();
         addSpener();
+        const body = document.querySelector('.jodit-wysiwyg');
         const form = document.getElementById('post-form')
         let dataForm = new FormData(form);
-        dataForm.append('body', content)
+        dataForm.append('body', body.innerHTML)
 
         if (content.length > 100) {
             axios.put(`${url}${lang}/api/post/update/` + id, dataForm, {
@@ -190,7 +191,7 @@ export default function UpdatePost() {
                     visible,
                     src: image,
                     onVisibleChange: (value) => {
-                    setVisible(value);
+        
                 },
                 }}
             />
@@ -231,7 +232,6 @@ export default function UpdatePost() {
                     value={content}
                     config={config}
                     tabIndex={1}
-                    onBlur={(newContent) => setContent(newContent)}
                 />
             </div>
         </div>

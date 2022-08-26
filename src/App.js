@@ -31,6 +31,7 @@ import BookCardLoading from './components/book/BookCardLoading';
 import UpdatePost from './pages/UpdatePost';
 import CreateBook from './pages/CreateBook';
 import LanguageProvider from './context/LanguageContext';
+import TextEditor from './components/TextEditor';
 
 
 
@@ -87,7 +88,7 @@ function App() {
               <Route path="/policy/" element={<Policy />} />
               <Route path="/contact/" element={<Contact />} />
               <Route path="/p/:slug" element={<PostDetial />} />
-             
+             <Route path='/editor' element={<TextEditor />} />
               <Route path="/books/" element={<Book />} />
               <Route path="/book/:id" element={<BookDetail />} />
               <Route path="/Menu/" element={<Menu />} />
