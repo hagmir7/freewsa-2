@@ -32,6 +32,8 @@ import UpdatePost from './pages/UpdatePost';
 import CreateBook from './pages/CreateBook';
 import LanguageProvider from './context/LanguageContext';
 import TextEditor from './components/TextEditor';
+import Search from './components/Search';
+import SearchPage from './pages/SearchPage';
 
 
 
@@ -85,6 +87,7 @@ function App() {
               {/* Routes */}
               
               <Route path="/about/" element={<About />} />
+              <Route path='/search/:query' element={<SearchPage />} />
               <Route path="/policy/" element={<Policy />} />
               <Route path="/contact/" element={<Contact />} />
               <Route path="/p/:slug" element={<PostDetial />} />
@@ -123,6 +126,7 @@ export const Home = () => {
   return (
     <Fragment>
       <div className='container'>
+        <Search />
         < PostContentCards />
       </div>
 

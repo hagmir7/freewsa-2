@@ -19,7 +19,7 @@ function Book() {
         fetchItems();
         laodMore()
 
-    }, []);
+    }, [currentLanguageCode]);
 
     
 

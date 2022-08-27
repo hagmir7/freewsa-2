@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext } from 'react'
 import coockies from 'js-cookie';
 
 
@@ -10,7 +10,6 @@ export const UrlContext = createContext()
 
 export default function UrlProvider({children}) {
 
-    // const [url, setUrl ] = useState('http://127.0.0.1:8000/')
 
 
 

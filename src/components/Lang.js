@@ -54,7 +54,7 @@ const Lang = () => {
 
         const success = () => {
             message.success(t('lang_chang_msg'));
-            window.location.reload();
+            // window.location.reload();
         };
 
     return (

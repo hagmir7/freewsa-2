@@ -1,9 +1,9 @@
 import { React, Fragment, useContext } from 'react';
 import GoogleAd from '../../ads/GoogleAd';
-import PostCardDetail from './PostCardDetail';
 import { Helmet } from 'react-helmet-async';
 import PostDelete from './PostDelete';
 import AuthContext from '../../context/AuthContext';
+import PostCard from './PostCard';
 
 
 
@@ -59,7 +59,7 @@ function PostDetialContent(props) {
                     <meta property="og:url" content={`/p/${props.slug}/`} />
                     <meta property="og:image" content={ifImage} />
                 </Helmet>
-                    <PostCardDetail />
+                <PostCard />
                 
             </div>
         </Fragment>
