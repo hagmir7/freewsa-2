@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import RandomColors from '../components/RandomColors';
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
 import PostCardLoading from '../components/post/PostCardLading';
 import { UrlContext } from '../context/UrlContext';
+import Search from '../components/Search';
 
 
 
 
 export default function SearchPage() {
-    React.useEffect(()=>{
-        searchHandel()
-    },[])
     const { query } = useParams()
     const [searchResult, setSearchResult] = React.useState('');
     const {url, lang } = React.useContext(UrlContext);
+
+
+    React.useEffect(()=>{
+        searchHandel();
+    },[query])
+
     
     const searchHandel = () => {
         const form = new FormData();
@@ -60,6 +64,7 @@ export default function SearchPage() {
 
     return (
         <div className='last row p-2 pb-3'>
+            <Search value={query} />
             {searchResult ? searchResult : <PostCardLoading />}
         </div>
     )
