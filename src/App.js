@@ -126,8 +126,8 @@ export const Home = () => {
   return (
     <Fragment>
       <div className='container'>
-        <Search />
-        < PostContentCards />
+          <Search />
+         < PostContentCards />
       </div>
 
       <Helmet>
