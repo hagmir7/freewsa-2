@@ -14,7 +14,7 @@ import Dashboard from './pages/Dashboard';
 import Language from './pages/Language';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import {Fragment, useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { Profile } from './pages/Profile';
 import { UpdateProfile } from './pages/UpdateProfile';
@@ -41,7 +41,12 @@ import SearchPage from './pages/SearchPage';
 
 
 function App() {
-
+  setTimeout(function () {
+    const node = document.getElementsByTagName('jodit');
+    console.log(node);
+    node.outerHTML = node.innerHTML;
+    // node.replaceWith(...node.childNodes)
+  }, 2000)
 
   const lagnCode = coockies.get('i18next') || 'en'
   useEffect(() => {
@@ -50,84 +55,91 @@ function App() {
       document.querySelector('#avatar-menu').classList.remove(lagnCode === 'ar' ? 'dropdown-menu-end' : 'dropdown-menu-start');
       document.querySelector('#avatar-menu').classList.add(lagnCode === 'ar' ? 'dropdown-menu-start' : 'dropdown-menu-end');
     }
-  })
+  }, [lagnCode])
 
   return (
-    <div className="App">
+    <>
       <BrowserRouter>
-      <UrlProvider>
-        <AuthProvider>
-          <LanguageProvider >
-          <Nav />
+        <UrlProvider>
+          <AuthProvider>
+            <LanguageProvider >
+              <Nav />
 
-            <Routes>
+              <Routes>
 
-              <Route path="/" exact element={<Home />} />
-              {/* Admin Routes */}
-              <Route path="/post/create" element={<AdminRoute />}>
-                <Route path='' element={<CreatePost />}></Route>
-              </Route>
+                <Route path="/" exact element={<Home />} />
+                {/* Admin Routes */}
+                <Route path="/post/create" element={<AdminRoute />}>
+                  <Route path='' element={<CreatePost />}></Route>
+                </Route>
 
-              <Route path="/admin/dashboard/" element={<AdminRoute />}>
-                <Route path='' element={<Dashboard />}></Route>
-              </Route>
+                <Route path="/admin/dashboard/" element={<AdminRoute />}>
+                  <Route path='' element={<Dashboard />}></Route>
+                </Route>
 
-              <Route path="/post/update/:id" element={<AdminRoute />}>
-                <Route path='' element={<UpdatePost />}></Route>
-              </Route>
+                <Route path="/post/update/:id" element={<AdminRoute />}>
+                  <Route path='' element={<UpdatePost />}></Route>
+                </Route>
 
-              <Route path="/admin/posts/" element={<AdminRoute />}>
-                <Route path='' element={<Posts />}></Route>
-              </Route>
-
-
-              <Route path="/book/create" element={<AdminRoute />}>
-                <Route path='' element={<CreateBook />}></Route>
-              </Route>
-              {/* Routes */}
-              
-              <Route path="/about/" element={<About />} />
-              <Route path='/search/:query' element={<SearchPage />} />
-              <Route path="/policy/" element={<Policy />} />
-              <Route path="/contact/" element={<Contact />} />
-              <Route path="/p/:slug" element={<PostDetial />} />
-             <Route path='/editor' element={<TextEditor />} />
-              <Route path="/books/" element={<Book />} />
-              <Route path="/book/:id" element={<BookDetail />} />
-              <Route path="/Menu/" element={<Menu />} />
-              <Route path="/language/" element={<Language />} />
-              <Route path='/accounts/login/' element={<Login />} />
-              <Route path='/accounts/register/' element={<Register />} />
-              <Route path='/user/:username/' element={<Profile />} />
-              <Route path='/profile/:username/' element={<UpdateProfile />} />
-              {/* Test Routes */}
-              <Route path='post/loading/test' element={<PostCardLoading />} />
-              <Route path='book/loading/test' element={<BookCardLoading />} />
-              <Route path='post/detail/loading/test' element={<PostDetailLoading />} />
+                <Route path="/admin/posts/" element={<AdminRoute />}>
+                  <Route path='' element={<Posts />}></Route>
+                </Route>
 
 
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+                <Route path="/book/create" element={<AdminRoute />}>
+                  <Route path='' element={<CreateBook />}></Route>
+                </Route>
+                {/* Routes */}
+
+                <Route path="/about/" element={<About />} />
+                <Route path='/search/:query' element={<SearchPage />} />
+                <Route path="/policy/" element={<Policy />} />
+                <Route path="/contact/" element={<Contact />} />
+                <Route path="/p/:slug" element={<PostDetial />} />
+                <Route path='/editor' element={<TextEditor />} />
+                <Route path="/books/" element={<Book />} />
+                <Route path="/book/:id" element={<BookDetail />} />
+                <Route path="/Menu/" element={<Menu />} />
+                <Route path="/language/" element={<Language />} />
+                <Route path='/accounts/login/' element={<Login />} />
+                <Route path='/accounts/register/' element={<Register />} />
+                <Route path='/user/:username/' element={<Profile />} />
+                <Route path='/profile/:username/' element={<UpdateProfile />} />
+                {/* Test Routes */}
+                <Route path='post/loading/test' element={<PostCardLoading />} />
+                <Route path='book/loading/test' element={<BookCardLoading />} />
+                <Route path='post/detail/loading/test' element={<PostDetailLoading />} />
+
+
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
             </LanguageProvider>
-        </AuthProvider>
+          </AuthProvider>
         </UrlProvider>
         <Footer />
       </BrowserRouter>
 
 
-    </div>
+    </>
   );
 }
 
 export const Home = () => {
-  useEffect(()=>{
-    window.scrollTo(0, 0)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
   }, [])
+
+
+
+
+
+
   return (
     <Fragment>
-      <div className='container'>
-          <Search />
-         < PostContentCards />
+      <div className='container p-0'>
+        <Search />
+        < PostContentCards />
       </div>
 
       <Helmet>

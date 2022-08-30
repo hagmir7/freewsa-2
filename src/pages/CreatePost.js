@@ -252,6 +252,8 @@ export const CreatePost = () => {
                             config={config}
                             placeholder="Start Typeing"
                             tabIndex={1}
+                            editHTMLDocumentMode={false}
+                            editorCssClass={'some_my_class'}
                             // onChange={(newContent) => setContent(newContent)}
                             // onBlur={(newContent) => setContent(newContent)}
                             

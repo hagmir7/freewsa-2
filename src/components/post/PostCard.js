@@ -65,7 +65,7 @@ function PostCard() {
                     data.map((item, index) => {
                         if (data.length === index + 1) {
                             return (
-                                <div ref={lastPostElement} className="col-12 col-md-6 col-lg-4 mb-3 loading" key={item.id}>
+                                <div ref={lastPostElement} className="col-12 col-md-6 col-lg-4 mb-3 loading p-2" key={item.id}>
                                     <Link to={`/p/${item.slug}/`}>
                                         {item.image ?
                                             <img className="embed-responsive rounded w-100" alt={item.title} src={item.image} sizes="25vw" />
@@ -90,7 +90,7 @@ function PostCard() {
                         } else {
 
                             return (
-                                <div className="col-12 col-md-6 col-lg-4 mb-3 loading" key={item.id}>
+                                <div className="col-12 col-md-6 col-lg-4 mb-3 loading p-2" key={item.id}>
                                     <Link to={`/p/${item.slug}/`}>
                                         {item.image ?
                                             <img className="embed-responsive rounded w-100" alt={item.title} src={item.image} sizes="25vw" />

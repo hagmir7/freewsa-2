@@ -18,8 +18,8 @@ function PostDetialContent(props) {
 
     const image = ()=>{
         return(
-            <div className='shdow-sm card mt-3 mb-3'>
-                <img className='w-100 img-detail' alt={props.title} src={props.image} />
+            <div className='w-100 mt-3 mb-3 d-flex justify-content-center row p-0 '>
+                <img className='col-md-10 card shadow-sm img-detail p-0' alt={props.title} src={props.image} />
             </div>
         )
     }
@@ -31,7 +31,7 @@ function PostDetialContent(props) {
                 <div className='row justify-content-center p-0'>
                     <div className='col-sm-12 col-md-10 col-lg-8 col-xl-8 card shadow-sm' id='myList'>
                     <GoogleAd slot="4567237334" googleAdId="ca-pub-6043226569102012"/>
-                        {props.image ? image() :''}
+                        {props.image ? image() : <></>}
                         <div className='d-flex justify-content-center mt-2'>
                             <div className='w-100'>
                                 <h1 className='h3'>{props.title}</h1>
