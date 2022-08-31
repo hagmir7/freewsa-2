@@ -8,6 +8,7 @@ import { UrlContext } from '../context/UrlContext';
 import { message } from 'antd';
 import { Button } from 'antd';
 import CreateLanguage from '../components/CreateLanguage';
+import ConvertImage from '../components/ConvertImage';
 
 
 export default function CreateBook() {
@@ -27,13 +28,15 @@ export default function CreateBook() {
     const [listOption, setListOption] = useState(null);
     // Spenner settings
     const [spenner, setSpenner] = useState(false)
+    const [image, setImage] = useState('')
 
     
 
     const CreateBook = (e) => {
         e.preventDefault();
         setSpenner(true)
-        const formData = new FormData(e.target)
+        const formData = new FormData(e.target);
+        formData.append('image', image)
         axios.post(`${url + lang}/api/book/create`, formData, {
             Headers: {
                 'Content-Type': 'application/json'
@@ -45,6 +48,7 @@ export default function CreateBook() {
         }).catch(error => {
             message.error(t('Fail to publish book.'))
             setSpenner(false)
+            console.log(error);
         })
     }
 
@@ -113,6 +117,15 @@ export default function CreateBook() {
 
 
 
+    
+    const addImage = (e) => {
+        // setImageDisplay(true);
+        setImage(ConvertImage(e.target.files[0]))
+        // console.log(file)
+        // setPlaceholder(URL.createObjectURL(e.target.files[0]))
+
+    }
+
 
 
   return (
@@ -157,9 +170,9 @@ export default function CreateBook() {
                           <Button type="dashed" className='mx-1 mt-1'>+</Button>
                       </div>
                     <label htmlFor="image"  className='mt-2 fs-6'>{t("Image")}</label>
-                    <input className='form-control' type="file" name="image" accept='image/*' id="image" required/>
+                    <input className='form-control' name='image' type="file" accept='image/*' id="image" required/>
                     <label htmlFor="file" className='mt-2 fs-6'>{t("File")}</label>
-                    <input className='form-control' type="file" accept='.doc,.docx,.pdf,.txt,.zip,.rar' name="file" id="file"  required/>
+                    <input className='form-control' onChange={addImage} type="file" accept='.doc,.docx,.pdf,.txt,.zip,.rar' name="file" id="file"  required/>
                     <textarea maxLength={300} name="description" id="description" cols="30" rows="5" placeholder={t("Description")+'...'} className='form-control mt-2'></textarea>
                     <button type='submit' className='mt-3 btn btn-primary w-100'>
                             {spenner ? <LoadingOutlined style={{ fontSize: 24 }} />

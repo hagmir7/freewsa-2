@@ -4,18 +4,27 @@ import { useTranslation } from 'react-i18next'
 import { UrlContext } from '../context/UrlContext';
 import { LoadingOutlined } from '@ant-design/icons';
 import JoditEditor from "jodit-react";
-import { Button, Image as ImageTag , message } from 'antd';
+import { Button, Image as ImageTag, message } from 'antd';
 import CreateLanguage from '../components/CreateLanguage';
 import CreateCategory from '../components/CreateCategory';
+import ConvertImage from '../components/ConvertImage';
 
 
 export const CreatePost = () => {
+
+
+
     const { t } = useTranslation();
     const { url, lang } = useContext(UrlContext);
-    const [image, setImage] = useState();
     const [visible, setVisible] = useState(false);
-
     const [spenner, setSpenner] = useState(false);
+    const [image, setImage] = useState('');
+    const [placeholder, setPlaceholder] = useState('');
+
+
+
+
+
 
 
 
@@ -34,11 +43,13 @@ export const CreatePost = () => {
     const [languageOptions, setLanguageOptions] = useState(null);
     const [categoryOptions, setcategoryOptions] = useState(null);
     const [listOption, setListOption] = useState(null);
-    const [imageDisplay, setImageDisplay] = useState(false)
+    const [imageDisplay, setImageDisplay] = useState(false);
+
+
 
 
     let fetchLanguageOptions = async () => {
-        axios.get(url+lang+"/api/language/list", {
+        axios.get(url + lang + "/api/language/list", {
             Headers: {
                 'Content-Type': "application/json"
             }
@@ -53,7 +64,7 @@ export const CreatePost = () => {
             }
             setLanguageOptions(getOptions)
         }).catch(error => {
-            message.error(t("Fail to load language."))
+            message.error(t("Fail to load language."));
         })
     }
 
@@ -88,13 +99,6 @@ export const CreatePost = () => {
 
 
 
-
-
-
-
-
-
-
     // Send data to server
     const createPost = (event) => {
         const body = document.querySelector('.jodit-wysiwyg');
@@ -102,6 +106,7 @@ export const CreatePost = () => {
         setSpenner(true);
         const form = document.getElementById('post-form')
         let dataForm = new FormData(form);
+        dataForm.append('image', image)
         dataForm.append('body', body.innerHTML)
 
         if (body.innerHTML.length > 100) {
@@ -116,7 +121,7 @@ export const CreatePost = () => {
                 message.success(data.data.message);
                 setSpenner(false)
                 form.reset();
-         
+
             }).catch(function (error) {
                 console.log(error)
                 setSpenner(false)
@@ -128,34 +133,11 @@ export const CreatePost = () => {
     }
 
     const addImage = (e) => {
-        if (e.target.files.length > 0) {
-            // setImage(URL.createObjectURL(e.target.files[0]));
-            setImageDisplay(true)
-
-
-            const src = URL.createObjectURL(e.target.files[0]);
-            // Start converting 
-            let canvase = document.createElement('canvas');
-            let ctx = canvase.getContext('2d');
-        
-        
-            const newImage = new Image();
-            newImage.src = src;
-        
-            newImage.onload = function(){
-                canvase.width = newImage.width;
-                canvase.height = newImage.height;
-                ctx.drawImage(newImage, 0, 0);
-        
-                // convet to webp
-                const webpImage = canvase.toDataURL("image/webp", 1);
-                setImage(webpImage);
-        
-            }
-
-        } else {
-            setImageDisplay(false)
-        }
+        const file = ConvertImage(e.target.files[0])
+        setImageDisplay(true);
+        setImage(file)
+        console.log(file)
+        setPlaceholder(URL.createObjectURL(e.target.files[0]))
 
     }
 
@@ -164,10 +146,10 @@ export const CreatePost = () => {
             <div>
                 <Button type="primary" className='mt-2' onClick={() => setVisible(true)}>{t('Show Image')}</Button>
                 <ImageTag width={200} style={{ display: 'none', }}
-                    src={image}
+                    src={placeholder}
                     preview={{
                         visible,
-                        src: image,
+                        src: placeholder,
                         onVisibleChange: (value) => {
                             setVisible(value);
                         },
@@ -211,7 +193,7 @@ export const CreatePost = () => {
                     <h1 className='h4'>{t("Create new post")}</h1>
                     <form onSubmit={createPost} id="post-form">
                         <input type="text" placeholder={t("Title")} maxLength={100} name="title" className="form-control mt-3" required />
-                        <input type="file" name='image' onChange={addImage}  accept='image/*' className="form-control mt-3" />
+                        <input type="file" name='' id='image' onChange={addImage} accept='image/*' className="form-control mt-3" />
                         {imageDisplay ? <ShowImage /> : null}
                         <input type="text" name="tags" placeholder={t("Tags")} maxLength={150} className="form-control mt-3" required />
                         <div className="d-flex mt-2">
@@ -254,10 +236,10 @@ export const CreatePost = () => {
                             tabIndex={1}
                             editHTMLDocumentMode={false}
                             editorCssClass={'some_my_class'}
-                            // onChange={(newContent) => setContent(newContent)}
-                            // onBlur={(newContent) => setContent(newContent)}
-                            
-                            
+                        // onChange={(newContent) => setContent(newContent)}
+                        // onBlur={(newContent) => setContent(newContent)}
+
+
                         />
                     </div>
                 </div>

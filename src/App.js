@@ -42,10 +42,6 @@ import SearchPage from './pages/SearchPage';
 
 function App() {
   setTimeout(function () {
-    const node = document.getElementsByTagName('jodit');
-    console.log(node);
-    node.outerHTML = node.innerHTML;
-    // node.replaceWith(...node.childNodes)
   }, 2000)
 
   const lagnCode = coockies.get('i18next') || 'en'

@@ -7,6 +7,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import JoditEditor from "jodit-react";
 import { useNavigate, useParams} from "react-router-dom";
 import { Button, Image, message } from 'antd';
+import ConvertImage from '../components/ConvertImage';
 
 
 
@@ -25,6 +26,7 @@ export default function UpdatePost() {
     // 
 
     const [image, setImage ] = useState(false);
+    const [placeholder, setPlaceholder ] = useState(false);
 
     const [slug, setSlug] = useState(null)
 
@@ -148,6 +150,7 @@ export default function UpdatePost() {
         const body = document.querySelector('.jodit-wysiwyg');
         const form = document.getElementById('post-form')
         let dataForm = new FormData(form);
+        dataForm.append('image', image)
         dataForm.append('body', body.innerHTML)
 
         if (content.length > 100) {
@@ -171,14 +174,15 @@ export default function UpdatePost() {
 
 
     const addImage = (e) => {
-        if(e.target.files.length > 0 ){
+        if (e.target.files.length > 0) {
+            const file = ConvertImage(e.target.files[0])
             setDisplay(true);
-            setImage(URL.createObjectURL(e.target.files[0]));
-        }else{
-            setDisplay(false);
-            setImage(false)
+            setImage(file)
+            console.log(file)
+            setPlaceholder(URL.createObjectURL(e.target.files[0]))
         }
-        
+
+
     }
 
     const ShowImage = () => {
@@ -186,10 +190,10 @@ export default function UpdatePost() {
             <div>
             <Button type="primary" className='mt-2' onClick={() => setVisible(true)}>{t('Show Image')}</Button>
             <Image width={200} style={{ display: 'none', }}
-                src={image}
+                src={placeholder}
                 preview={{
                     visible,
-                    src: image,
+                    src: placeholder,
                     onVisibleChange: (value) => {
         
                 },
@@ -207,7 +211,7 @@ export default function UpdatePost() {
             <h1 className='h4'>{t("Update Post")}</h1>
             <form onSubmit={updatePost} id="post-form">
                 <input type="text" placeholder={t("Title")} maxLength={100} name="title" id="title" className="form-control mt-3" required />
-                <input type="file" id='image' onChange={addImage} name="image" accept='image/*' className="form-control mt-3" />
+                <input type="file" id='image' onChange={addImage} name="" accept='image/*' className="form-control mt-3" />
                 {display ? <ShowImage /> : image ? <ShowImage /> : null }
                 <input type="text" id='tags' name="tags" placeholder={t("Tags")} maxLength={150} className="form-control mt-3" required />
                 <select id='language' className='form-select mt-3' name='language' required onChange={((event) => { fetchCategoryOptions(event.target.value) })}>
