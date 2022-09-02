@@ -107,9 +107,9 @@ export const CreatePost = () => {
         setSpenner(true);
         const form = document.getElementById('post-form')
         let dataForm = new FormData(form);
-        dataForm.append('image', image)
-        dataForm.append('body', body.innerHTML)
-
+        dataForm.append('body', body.innerHTML);
+        if(image.length > 0) dataForm.append('image', image)
+        
         if (body.innerHTML.length > 100) {
             axios.post(`${url + lang}/api/post/create/`, dataForm, {
                 headers: {

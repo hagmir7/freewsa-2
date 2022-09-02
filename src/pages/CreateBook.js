@@ -38,7 +38,7 @@ export default function CreateBook() {
         e.preventDefault();
         setSpenner(true)
         const formData = new FormData(e.target);
-        formData.append('image', image)
+        if(image.length > 0) formData.append('image', image)
         axios.post(`${url + lang}/api/book/create`, formData, {
             Headers: {
                 'Content-Type': 'application/json'

@@ -24,7 +24,7 @@ export default function UpdatePost() {
     const { url, lang } = useContext(UrlContext);
     // 
 
-    const [image, setImage] = useState();
+    const [image, setImage] = useState('');
     const [placeholder, setPlaceholder] = useState(false);
 
     const [slug, setSlug] = useState(null)
@@ -150,9 +150,8 @@ export default function UpdatePost() {
         const body = document.querySelector('.jodit-wysiwyg');
         const form = document.getElementById('post-form')
         let dataForm = new FormData(form);
-        dataForm.append('image', image)
-        dataForm.append('body', body.innerHTML)
-
+        dataForm.append('body', body.innerHTML);
+        if(image.length > 0)dataForm.append('image', image)
         if (content.length > 100) {
             axios.put(`${url}${lang}/api/post/update/` + id, dataForm, {
                 headers: {
