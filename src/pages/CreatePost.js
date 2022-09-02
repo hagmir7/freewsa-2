@@ -7,7 +7,6 @@ import JoditEditor from "jodit-react";
 import { Button, Image as ImageTag, message } from 'antd';
 import CreateLanguage from '../components/CreateLanguage';
 import CreateCategory from '../components/CreateCategory';
-import ConvertImage from '../components/ConvertImage';
 
 
 export const CreatePost = () => {
@@ -73,23 +72,25 @@ export const CreatePost = () => {
 
     // Featch Category
     const fetchCategoryOptions = (e) => {
-        axios.get(`${url + lang}/api/post/category/${e.target.value}`, {
-            'Content-Type': 'application/json'
-        }).then(function (response, success) {
-            const data = response.data
-            const getOptions = () => {
-                return (
-                    data.map(item => (
-                        <option key={item.id} value={item.id}>{item.name}</option>
-                    ))
-                )
-            }
-            setcategoryOptions(getOptions);
-        }).catch(error => {
-            message.error(t("Fail to load category"))
-            console.clear();
-
-        });
+        if(e.target.value.length > 0){
+            axios.get(`${url + lang}/api/post/category/${e.target.value}`, {
+                'Content-Type': 'application/json'
+            }).then(function (response, success) {
+                const data = response.data
+                const getOptions = () => {
+                    return (
+                        data.map(item => (
+                            <option key={item.id} value={item.id}>{item.name}</option>
+                        ))
+                    )
+                }
+                setcategoryOptions(getOptions);
+            }).catch(error => {
+                message.error(t("Fail to load category"))
+                console.clear();
+    
+            });
+        }
     }
 
 
@@ -133,11 +134,32 @@ export const CreatePost = () => {
     }
 
     const addImage = (e) => {
-        const file = ConvertImage(e.target.files[0])
+        const imageFile = e.target.files[0];
+        const src = URL.createObjectURL(imageFile);
+        let canvase = document.createElement('canvas');
+        let ctx = canvase.getContext('2d');
+        const newImage = new Image();
+        newImage.src = src;
+        newImage.onload = function () {
+            canvase.width = newImage.width;
+            canvase.height = newImage.height;
+            ctx.drawImage(newImage, 0, 0);
+            const webpImage = canvase.toDataURL("image/webp", 1);
+            console.log(webpImage);
+            var byteString = atob(webpImage.split(',')[1]);
+            var mimeString = webpImage.split(',')[0].split(':')[1].split(';')[0];
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            const blob = new Blob([ab], { type: mimeString });
+            setImage(new File([blob], imageFile.name.split('.')[0] + '.webp'))
+
+        
+        }
         setImageDisplay(true);
-        setImage(file)
-        console.log(file)
-        setPlaceholder(URL.createObjectURL(e.target.files[0]))
+        setPlaceholder(URL.createObjectURL(imageFile))
 
     }
 
@@ -192,7 +214,7 @@ export const CreatePost = () => {
                 <div className='col-md-6'>
                     <h1 className='h4'>{t("Create new post")}</h1>
                     <form onSubmit={createPost} id="post-form">
-                        <input type="text" placeholder={t("Title")} maxLength={100} name="title" className="form-control mt-3" required />
+                        <input type="text" placeholder={t("Title")} maxLength={100}  name="title" className="form-control mt-3" required />
                         <input type="file" name='' id='image' onChange={addImage} accept='image/*' className="form-control mt-3" />
                         {imageDisplay ? <ShowImage /> : null}
                         <input type="text" name="tags" placeholder={t("Tags")} maxLength={150} className="form-control mt-3" required />
