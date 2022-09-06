@@ -34,6 +34,7 @@ export default function UpdatePost() {
     const history = useNavigate()
 
     const [imageDisplay, setImageDisplay] = useState(false);
+    const [spenner, setSpenner] = useState(false);
 
 
     // Editor tools
@@ -102,18 +103,6 @@ export default function UpdatePost() {
     }
 
 
-    function addSpener() {
-        document.getElementById('create-post-box').classList.remove('d-none');
-        document.getElementById('create-post').classList.add('d-none');
-        document.getElementById('create-post-btn').setAttribute('disabled', '');
-    }
-    function removeSperner() {
-        document.getElementById('create-post-box').classList.add('d-none');
-        document.getElementById('create-post').classList.remove('d-none');
-        document.getElementById('create-post-btn').removeAttribute('disabled');
-    }
-
-
 
     // Get data for update
     const getPost = async () => {
@@ -146,12 +135,13 @@ export default function UpdatePost() {
     // Send data to server
     const updatePost = async (event) => {
         event.preventDefault();
-        addSpener();
+        setSpenner(true)
         const body = document.querySelector('.jodit-wysiwyg');
         const form = document.getElementById('post-form')
         let dataForm = new FormData(form);
         dataForm.append('body', body.innerHTML);
-        if(image.length > 0)dataForm.append('image', image)
+
+        if(toString(image).length > 0) {dataForm.append('image', image)}
         if (content.length > 100) {
             axios.put(`${url}${lang}/api/post/update/` + id, dataForm, {
                 headers: {
@@ -160,14 +150,14 @@ export default function UpdatePost() {
                 }
             }).then(function (data, sucess, state) {
                 message.success(data.data.message);
-                removeSperner()
+                setSpenner(false)
                 history('/p/' + slug)
             }).catch(function (error) {
-                removeSperner();
+                setSpenner(false)
             });
         } else {
             message.error("Body content must be greater than 100 character.");
-            removeSperner()
+            setSpenner(false)
         }
     }
 
@@ -243,9 +233,13 @@ return (
                         {categoryOptions}
                     </select>
                     <textarea id='description' placeholder={t("Description")} className="form-control mt-3" name='description' maxLength={160}></textarea>
-                    <button type='submit' id='create-post-btn' className='mt-3 btn btn-primary w-100'>
-                        <span id='create-post'>{t("Update")}</span>
-                        <LoadingOutlined className="d-none" id="create-post-box" style={{ fontSize: 24 }} />
+                    <button type='submit' className='mt-3 btn btn-primary w-100'>
+                        {
+                            !spenner ? <span>{t("Update")}</span>
+                            : <LoadingOutlined style={{ fontSize: 24 }} />
+                        }
+                        
+                        
                     </button>
                 </form>
             </div>

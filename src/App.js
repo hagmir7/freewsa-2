@@ -34,6 +34,7 @@ import LanguageProvider from './context/LanguageContext';
 import TextEditor from './components/TextEditor';
 import Search from './components/Search';
 import SearchPage from './pages/SearchPage';
+import UpdateBook from './pages/UpdateBook';
 
 
 
@@ -79,6 +80,10 @@ function App() {
 
                 <Route path="/admin/posts/" element={<AdminRoute />}>
                   <Route path='' element={<Posts />}></Route>
+                </Route>
+
+                <Route path="/book/update/:id" element={<AdminRoute />}>
+                  <Route path='' element={<UpdateBook />}></Route>
                 </Route>
 
 

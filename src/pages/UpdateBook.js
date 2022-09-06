@@ -7,13 +7,18 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { UrlContext } from '../context/UrlContext';
 import CreateLanguage from '../components/CreateLanguage';
 import { Button, Image as ImageElement, message } from 'antd';
+import { useParams } from 'react-router-dom'
 
 
-export default function CreateBook() {
+
+
+export default function UpdateBook() {
+
 
     useEffect(() => {
         LoadList();
         fetchLanguageOptions();
+        getBookDatail()
     }, [])
 
 
@@ -32,6 +37,9 @@ export default function CreateBook() {
     const [placeholder ,setPlaceholder] = useState(false);
     const [visible, setVisible] = useState(false);
 
+    const { id } = useParams()
+    const [book, setBook] = useState({});
+
     
 
     const CreateBook = (e) => {
@@ -41,10 +49,9 @@ export default function CreateBook() {
         if(toString(image).length > 0){
             formData.append('image', image)
         }
-        axios.post(`${url + lang}/api/book/create`, formData, {
+        axios.post(`${url + lang}/api/book/update/${id}`, formData, {
             Headers: {
                 'Content-Type': 'multipart/form-data',
-
             }
         }).then(response => {
             message.success(response.data.message)
@@ -57,10 +64,23 @@ export default function CreateBook() {
         })
     }
 
+    const getBookDatail = ()=>{
+        axios.get(`${url + lang}/api/book/update/${id}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response =>{
+            console.log(response.data)
+            setBook(response.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
     
     // Fretch Language
     let fetchLanguageOptions = async () => {
-        axios.get(url+lang+"/api/language/list", {
+        axios.get(url + lang + "/api/language/list", {
             Headers: {
                 'Content-Type': "application/json"
             }
@@ -68,9 +88,14 @@ export default function CreateBook() {
             const data = response.data
             const getOptions = () => {
                 return (
-                    data.map(item => (
-                        <option key={item.id} value={item.id}>{item.name}</option>
-                    ))
+                    data.map(item => {
+                        if(item.id === book.language){
+                           return <option key={item.id} value={item.id} selected>{item.name}</option>
+                        }else{
+                            return <option key={item.id} value={item.id}>{item.name}</option>
+                        }
+                    }
+                    )
                 )
             }
             setLanguageOptions(getOptions)
@@ -175,60 +200,59 @@ export default function CreateBook() {
 
 
   return (
-    
     <div className="container">
-        <div className="row d-flex justify-content-center">
-            <div className="col-md-6">
-                <h1 className='h3' dir='auto'>{t("Publish new book")}</h1>
-                <form onSubmit={CreateBook}>
-                    <input className='form-control mt-2' maxLength={80} type="text" name='name' id='name' placeholder={t("Book name")+ '...'} required/>
-                    <input className='form-control mt-2' maxLength={50} type="text" name='author' id='author' placeholder={t("Author")+ '...'} required/>
-                    <input className='form-control mt-2' type="number" name='pages' id='pages' placeholder={t("Pages")+ '...'} required/>
-                    <div className="mt-2 d-flex">
-                    <select name="language" id="language" onChange={getCategry} className='form-select' required>
-                        <option value="">{t("Language")}</option>
-                        {languageOptions}
-                    </select>
-                    <CreateLanguage />
-                    </div>
+    <div className="row d-flex justify-content-center">
+        <div className="col-md-6">
+            <h1 className='h3' dir='auto'>{t("Update book")}</h1>
+            <form onSubmit={CreateBook}>
+                <input value={book.name} className='form-control mt-2' maxLength={80} type="text" name='name' id='name' placeholder={t("Book name")+ '...'} required/>
+                <input value={book.author} className='form-control mt-2' maxLength={50} type="text" name='author' id='author' placeholder={t("Author")+ '...'} required/>
+                <input value={book.pages} className='form-control mt-2' type="number" name='pages' id='pages' placeholder={t("Pages")+ '...'} required/>
+                <div className="mt-2 d-flex">
+                <select name="language" defaultValue={book.language} id="language" onChange={getCategry} className='form-select' required>
+                    <option value="">{t("Language")}</option>
+                    {languageOptions}
+                </select>
+                <CreateLanguage />
+                </div>
 
-                      <div className="mt-2 d-flex">
-                          <select name="category" id="category" className='form-select' required>
-                              <option value="">{t("Category")}</option>
-                              {categoryOptions}
-                          </select>
-                          <Button type="dashed" className='mx-1 mt-1'>+</Button>
-                      </div>
-                          <select name="book_type" id="book_type" className='form-select mt-2' required>
-                              <option value="">{t("Book file")}</option>
-                              <option value="PDF">PDF</option>
-                              <option value="DOCS">DOCS</option>
-                              <option value="TXT">TXT</option>
-                              <option value="ZIP">ZIP</option>
-                              <option value="RAR">RAR</option>
-                          </select>
-                          
-                      <div className="d-flex mt-2">
-                          <select name="list" id="list" className='form-select'>
-                              <option value="">{t("Play list")}</option>
-                              {listOption}
-                          </select>
-                          <Button type="dashed" className='mx-1 mt-1'>+</Button>
-                      </div>
-                    <label htmlFor="image"  className='mt-2 fs-6'>{t("Image")}</label>
-                    <input className='form-control' onChange={addImage} type="file" accept='image/*' id="image" required/>
-                    {imageDisplay ? <ShowImage /> : <></>}
+                  <div className="mt-2 d-flex">
+                      <select name="category" defaultValue={book.category} id="category" className='form-select' required>
+                          <option value="">{t("Category")}</option>
+                          {categoryOptions}
+                      </select>
+                      <Button type="dashed" className='mx-1 mt-1'>+</Button>
+                  </div>
+                      <select defaultValue={book.book_type} name="book_type" id="book_type" className='form-select mt-2' required>
+                          <option value="">{t("Book file")}</option>
+                          <option value="PDF">PDF</option>
+                          <option value="DOCS">DOCS</option>
+                          <option value="TXT">TXT</option>
+                          <option value="ZIP">ZIP</option>
+                          <option value="RAR">RAR</option>
+                      </select>
+                      
+                  <div className="d-flex mt-2">
+                      <select name="list" id="list" className='form-select'>
+                          <option value="">{t("Play list")}</option>
+                          {listOption}
+                      </select>
+                      <Button type="dashed" className='mx-1 mt-1'>+</Button>
+                  </div>
+                <label htmlFor="image"  className='mt-2 fs-6'>{t("Image")}</label>
+                <input className='form-control' onChange={addImage} type="file" accept='image/*' id="image" />
+                {imageDisplay ? <ShowImage /> : <></>}
 
-                    <label htmlFor="file" className='mt-2 fs-6'>{t("File")}</label>
-                    <input className='form-control' type="file" accept='.doc,.docx,.pdf,.txt,.zip,.rar' name="file" id="file"  required/>
-                    <textarea maxLength={300} name="description" id="description" cols="30" rows="5" placeholder={t("Description")+'...'} className='form-control mt-2'></textarea>
-                    <button type='submit' className='mt-3 btn btn-primary w-100'>
-                            {spenner ? <LoadingOutlined style={{ fontSize: 24 }} />
-                            : <span>{t("Publish")}</span>}
-                    </button>
-                </form>
-            </div>
+                <label htmlFor="file" className='mt-2 fs-6'>{t("File")}</label>
+                <input className='form-control' type="file" accept='.doc,.docx,.pdf,.txt,.zip,.rar' name="file" id="file"  />
+                <textarea maxLength={300} name="description" id="description" defaultValue={book.description} cols="30" rows="5" placeholder={t("Description")+'...'} className='form-control mt-2'></textarea>
+                <button type='submit' className='mt-3 btn btn-primary w-100'>
+                        {spenner ? <LoadingOutlined style={{ fontSize: 24 }} />
+                        : <span>{t("Publish")}</span>}
+                </button>
+            </form>
         </div>
     </div>
+</div>
   )
 }
