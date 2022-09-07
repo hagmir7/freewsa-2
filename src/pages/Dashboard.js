@@ -17,9 +17,15 @@ const Cards = (props) => {
                     <h6>{props.count}</h6>
                 </div>
                 <Tooltip placement="bottom" title={props.addText}>
-                    <Button><Link className="h5" to={props.link+ '/'}>+</Link></Button>
+                    <Button><Link className="h5" to={props.link + '/'}>+</Link></Button>
                 </Tooltip>
-                <Button className="mt-2"><Link className="h5" to={props.list+ '/'}><span className="navbar-toggler-icon"></span></Link></Button>
+                <Button className="mt-2">
+                    <Link className="h5" to={props.list + '/'}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
+                            <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </Link>
+                </Button>
             </div>
         </div>
     )
@@ -33,40 +39,40 @@ const Cards = (props) => {
 const Dashboard = () => {
     useEffect(() => {
         getDashboardata();
-      }, [])
+    }, [])
 
-      const {t} = useTranslation();
-    
-    
-    const {url, lang} = useContext(UrlContext);
-    
-      const [data, setData ] = useState({
-          'posts' : '',
-          'books' : '',
-          'templates' : '',
-          'products' : '',
-    
+    const { t } = useTranslation();
+
+
+    const { url, lang } = useContext(UrlContext);
+
+    const [data, setData] = useState({
+        'posts': '',
+        'books': '',
+        'templates': '',
+        'products': '',
+
     });
-      
-    
-    const getDashboardata = ()=>{
-          
+
+
+    const getDashboardata = () => {
+
         axios.get(`${url + lang}/api/dashboard/tools`, {
             headers: {
-                "Content-Type" : 'application/json'
+                "Content-Type": 'application/json'
             }
-        }).then(response =>{
+        }).then(response => {
             setData({
-                'posts' : response.data.posts,
-                'books' : response.data.books,
-                'templates' : response.data.templates,
-                'products' : response.data.products,
+                'posts': response.data.posts,
+                'books': response.data.books,
+                'templates': response.data.templates,
+                'products': response.data.products,
             })
-        })   
-              
+        })
+
     }
-    
-  
+
+
     return (
         <>
             <div className="container mb-2">

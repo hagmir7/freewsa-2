@@ -1,36 +1,49 @@
 import AuthContext from "../context/AuthContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import React from 'react'
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import coockies from 'js-cookie';
+
 
 
 function Auth() {
-    const { logoutUser, userInof, userProfile , getUserIfno} = useContext(AuthContext);
+    const { logoutUser, userInof, userProfile, getUserIfno } = useContext(AuthContext);
+    const [menu, setMenu] = useState(false);
+
+
     useEffect(() => {
         getUserIfno();
-    
-      
+
+
     }, [])
-    
-    
-    const {t} = useTranslation()
+
+
+    const { t } = useTranslation();
+    const langCode = coockies.get('i18next') === 'en';
+
 
 
     return (
-        <div className="dropdown d-lg-block d-none bg-white mt-2">
-            <img src={userProfile.avatar} width="40px" title={userInof.username} loading='eager' alt={userInof.username} height={40}  className="cover border rounded-pill pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown" />
-            <ul className='dropdown-menu dropdown-menu-end animate__animated animate__flipInX animate__faster' id="avatar-menu" aria-labelledby="dropdownMenuButton1">
-                <li><Link to={`user/`+userInof.username} className="dropdown-item">{t('Profile')}</Link></li>
-                <li><Link to={`/profile/${userInof.username}/`} className='dropdown-item'>{t("Update profile")}</Link></li>
-                <li><span onClick={logoutUser} className="dropdown-item pointer">{t("Logout")}</span></li>
-            </ul>
+        <div className="dropdown d-lg-block d-none bg-white mt-2" onMouseEnter={() => setMenu(true)} onMouseLeave={() => setMenu(false)}>
+            <img src={userProfile.avatar} width="40px" title={userInof.username} loading='eager' alt={userInof.username} height={40} className="cover border rounded-pill pointer" />
+            {
+                menu ?
+                    <ul className={`dropdown-menu d-block ${langCode ? 'end' : 'start'}-0  animate__animated animate__flipInX animate__faster`}>
+                        <li><Link to={`user/` + userInof.username} className="dropdown-item">{t('Profile')}</Link></li>
+                        <li><Link to={`/profile/${userInof.username}/`} className='dropdown-item'>{t("Update profile")}</Link></li>
+                        <li><span onClick={logoutUser} className="dropdown-item pointer">{t("Logout")}</span></li>
+                    </ul>
+                    :
+                    <></>
+            }
+
         </div>
     )
 }
 
 function NotAuth() {
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     return (
         <div className="d-none d-lg-block mt-2">
