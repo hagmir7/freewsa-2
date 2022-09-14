@@ -85,7 +85,7 @@ p {
     font-weight: 500;
     overflow: auto;
     padding: 0.5rem!important;
-    white-space: pre;
+    white-space: nowrap;
     max-height: 500px;
   }
 
