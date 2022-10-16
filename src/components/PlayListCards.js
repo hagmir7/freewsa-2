@@ -24,7 +24,7 @@ export default function PlayListCards(props) {
             }
         }).then(response => {
             const data = response.data.map(item => {
-                return (<CardItem key={item.id} slug={item.slug} id={item.slug} title={item.slug} image={item.image} date={item.date} />)
+                return (<CardItem key={item.id} slug={item.slug} id={item.slug} title={item.title} image={item.image} date={item.date} />)
             })
             setItem(data);
             if(!response.data.length > 0){

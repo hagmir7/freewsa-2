@@ -50,7 +50,7 @@ export default function PlayList() {
             return <SwiperSlide>
                <Link to={`/playList/${item.id}/${item.slug}`}>
                   <div className="play-list-container card overflow-hidden">
-                     <img src={item.cover} alt="" />
+                     <img src={item.cover} alt={item.name} />
                      <div class="middle">
                         <div class="hover-text h5"><span>{item.name}<br /> {getDate(item.date)}</span></div>
                      </div>
