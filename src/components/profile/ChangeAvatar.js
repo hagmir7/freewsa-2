@@ -65,7 +65,7 @@ export default function ChangeAvatar() {
             <form onSubmit={sendAvatar}>
                 <label className='mb-2 h6'>{t("Change profile image")}</label>
                 <input type="file" className='form-control' onChange={success} id='avatar' name='avatar' required />
-                <button type="submit" id="avatar-btn" className="btn btn-primary px-4 mt-2 btn-sm w-50">
+                <button type="submit" id="avatar-btn" className="btn btn-primary px-4 mt-2 btn-sm w-100">
                     <span id="avatar-save">{t("Save Changes")}</span>
                     <LoadingOutlined className="d-none" id="avatar-box" style={{ fontSize: 24 }} />
                 </button>

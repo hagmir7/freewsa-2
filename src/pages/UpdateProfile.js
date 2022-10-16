@@ -8,6 +8,8 @@ import { UrlContext } from '../context/UrlContext';
 import ChangeAvatar from '../components/profile/ChangeAvatar';
 import UpdateProfileCard from '../components/profile/UpdateProfileCard';
 import UpdateUserInofCard from '../components/profile/UpdateUserInofCard';
+import NotFoundPage from './NotFoundPage';
+import AuthContext from '../context/AuthContext';
 
 
 
@@ -24,9 +26,12 @@ export const UpdateProfile = () => {
 
     const history = useNavigate();
     const {url, lang} = useContext(UrlContext);
+    const [owner, setOwner] = useState();
+    const {user} = useContext(AuthContext);
 
 
 
+    
 
     let getUserInfo = async () => {
         const response = await fetch(`${url}${lang}/api/user/${username}`, {
@@ -38,14 +43,15 @@ export const UpdateProfile = () => {
         const data = await response.json()
         if (response.status === 200) {
             setProfile(data);
+            setOwner(data[0].username === user.username ? true : false);
         } else {
-            history('/accounts/login');
+            history('/');
         }
     }
 
     useEffect(() => {
         getUserInfo()
-    }, [])
+    }, [username])
 
 
     const Html = () => {
@@ -102,6 +108,6 @@ export const UpdateProfile = () => {
 
 
 
-    return (profile != null ? <Html /> : <LoadingDetail />)
+    return (profile != null ? owner ? <Html /> : <NotFoundPage /> :  <LoadingDetail />)
 
 }

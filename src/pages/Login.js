@@ -20,10 +20,11 @@ const Login = () => {
             <div className="container">
                 <div className="row d-flex justify-content-center w-100">
                     <div className="text-center mb-1">
-                        <img src={logo}  alt="Freewsa" width="70px" />
+                        <img src={logo}  alt="Freewsa" width="70px" height='auto' />
                         <p className="h5 mb-1">{t("Log in to manage your account")}</p>
                     </div>
                     <div className="col-md-5 shadow-sm card p-3 animate__animated animate__zoomIn animate__faster">
+                        <h1 className="d-none h4">Login to freewsad</h1>
                         <div id="alert-login"></div>
                         <form onSubmit={login}>
                             <label htmlFor="username" className="text-muted h6">{t('Username')}</label>
@@ -45,6 +46,8 @@ const Login = () => {
             </div>
             <Helmet>
                 <title>{t("Login")} - FreeWsad</title>
+                <link rel="canonical" href="/accounts/login" />
+                <meta name="description" content="Login to freewsad now to start managing your content easily..." />
             </Helmet>
         </div>
     )

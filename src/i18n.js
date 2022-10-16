@@ -4,10 +4,9 @@ import languageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
 
 const options = {
-  order: ['path','cookie','htmlTage','querystring', 'navigator', 'localStorage', 'subdomain'],
+  order: ['subdomain', 'path','cookie','htmlTage','querystring', 'navigator', 'localStorage'],
   lookupQuerystring: 'lng',
   caches: ['cookie'],
-  
 }
 
 
@@ -16,7 +15,7 @@ i18n
   .use(languageDetector)
   .use(HttpApi)
   .init({
-    supportedLngs: ['en', 'ar'],
+    supportedLngs: ['en', 'ar', 'fr'],
     fallbackLng: "en",
 
     detection:options,

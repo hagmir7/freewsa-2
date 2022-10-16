@@ -14,6 +14,10 @@ const languages = [
         code: 'ar',
         name: 'العربية',
         dir: 'rtl'
+    },
+    {
+        code: 'fr',
+        name: 'Française',
     }
     // },
     // {
@@ -40,16 +44,7 @@ const Lang = () => {
     const currentLanguage = languages.find(lan => lan.code === currentLanguageCode)
     useEffect(() => {
         document.querySelector('html').dir = currentLanguage.dir || 'ltr'
-
-
-
     }, [currentLanguage])
-
-
-    const success = () => {
-        message.success(t('lang_chang_msg'));
-        // window.location.reload();
-    };
 
     return (
         <div>
@@ -59,7 +54,6 @@ const Lang = () => {
                 className="lang"
                 onChange={(lang) => {
                     i18n.changeLanguage(lang);
-                    success();
                 }}
             >
 

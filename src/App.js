@@ -35,6 +35,8 @@ import TextEditor from './components/TextEditor';
 import Search from './components/Search';
 import SearchPage from './pages/SearchPage';
 import UpdateBook from './pages/UpdateBook';
+import PlayListPage from './pages/PlayListPage';
+import AllPlayLists from './pages/AllPlayLists';
 
 
 
@@ -42,12 +44,12 @@ import UpdateBook from './pages/UpdateBook';
 
 
 function App() {
-  setTimeout(function () {
-  }, 2000)
 
-  const lagnCode = coockies.get('i18next') || 'en'
+
   useEffect(() => {
-  }, [lagnCode])
+      document.querySelector('html').dir = coockies.get('i18next') === 'ar' ? 'rtl' : 'ltr'
+  }, [])
+
 
   return (
     <>
@@ -88,7 +90,9 @@ function App() {
                 {/* Routes */}
 
                 <Route path="/about/" element={<About />} />
+                <Route path="/playList/:id/:slug" element={<PlayListPage />} />
                 <Route path='/search/:query' element={<SearchPage />} />
+                <Route path='/playlists' element={<AllPlayLists />} />
                 <Route path="/policy/" element={<Policy />} />
                 <Route path="/contact/" element={<Contact />} />
                 <Route path="/p/:slug" element={<PostDetial />} />

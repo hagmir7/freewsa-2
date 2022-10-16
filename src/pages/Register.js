@@ -90,10 +90,11 @@ const Register = () => {
             <div className="container">
                 <div className="row d-flex justify-content-center w-100">
                     <div className="text-center mb-1">
-                        <img src={logo} alt="Freewsa" width="70px" />
+                        <img src={logo} alt="Freewsa" width="70px" height='auto' />
                         <p className="h5 mb-1">{t("Create your account and start reading now")}</p>
                     </div>
                     <div className="col-md-5 shadow-sm card p-3 animate__animated animate__zoomIn animate__faster">
+                    <h1 className="d-none h4">Create new account</h1>
                         <form className="mt-2" onSubmit={sendUser}>
                             {error != null ? <div className="alert alert-danger">{error}</div> : ''}
                             <input type="text" name='username' className="form-control mb-3" placeholder={t("Username")} required />
@@ -117,6 +118,8 @@ const Register = () => {
             </div>
             <Helmet>
                 <title>{t("Register")} - FreeWsad</title>
+                <link rel="canonical" href="/accounts/register" />
+                <meta name="description" content="Create new account on freewsad now to start managing your content easily..." />
             </Helmet>
         </div>
     )

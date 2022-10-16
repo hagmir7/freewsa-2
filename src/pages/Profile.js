@@ -1,21 +1,22 @@
 import React, { useContext } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import LoadingDetail from '../components/LoadignDetail';
 import { UrlContext } from '../context/UrlContext';
 import { UserInfoCard } from '../components/profile/UserInfoCard';
 import { UserInofCardBio } from '../components/profile/UserInfoCardBio';
+import NotFoundPage from './NotFoundPage'
 
 
 export const Profile = () => {
     const { username } = useParams();
     const [data, setData ] = useState(null)
     const {url, lang} = useContext(UrlContext);
-    const history = useNavigate();
+    const [status, setStatus] = useState(null);
 
     useEffect(() => {
         getData()
-    }, [])
+    }, [username])
 
 
     let getData = async () => {
@@ -26,18 +27,11 @@ export const Profile = () => {
             }
         })
         const data = await response.json()
-        if (response.status === 200) {
-            setData(data);
-            
-            
-        } 
-        else {
-            history('*')
-        }
+        response.status === 200 ? setData(data) : setStatus(response.status);
     }
 
 
-    const Html = () => {
+    const HTML = () => {
         return (
             <div className="container">
                 <div className="main-body">
@@ -81,5 +75,5 @@ export const Profile = () => {
 
 
 
-    return (data != null ? <Html /> :   <LoadingDetail /> );
+    return (data !== null ? <HTML /> : status === 404 ? <NotFoundPage /> :  <LoadingDetail />  );
 }
