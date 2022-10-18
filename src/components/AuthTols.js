@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import coockies from 'js-cookie';
 import { UserOutlined, UserSwitchOutlined, LogoutOutlined, MenuUnfoldOutlined, GlobalOutlined} from '@ant-design/icons';
 import { Dropdown, Menu, Space } from 'antd';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 
 
@@ -59,7 +60,7 @@ function Auth() {
             <Dropdown overlay={menu} trigger={['click']} >
                 <a onClick={(e) => e.preventDefault()}>
                     <Space>
-                    <img src={userProfile.avatar} width="40px" title={userInof.username} loading='eager' alt={userInof.username} height={40} className="cover border rounded-pill pointer" />
+                        <LazyLoadImage effect="blur" src={userProfile.avatar} width="40px" title={userInof.username} loading='eager' alt={userInof.username} height={40} className="cover border rounded-pill pointer" />
                     </Space>
                 </a>
             </Dropdown>

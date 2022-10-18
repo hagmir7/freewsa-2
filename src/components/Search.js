@@ -9,7 +9,8 @@ import { UrlContext } from '../context/UrlContext';
 export default function Search(props) {
 
     useEffect(()=>{
-        node.current.focus()
+        if(window.innerWidth > 900) node.current.focus();
+        
     }, [])
     const { t } = useTranslation();
     const [autoComplet, setAutoComplet] = useState(false);

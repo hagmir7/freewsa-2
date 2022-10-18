@@ -428,6 +428,9 @@ a.jodit-status-bar-link {
     .book-card {
         height: 310px;
     }
+    .play-list{
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -620,6 +623,9 @@ a.jodit-status-bar-link {
 @media screen and (max-width: 768px) {
   .slide-content{
     margin: 0 10px;
+  }
+  .loading-content{
+    width: 100%!important;
   }
   .swiper-navBtn{
     display: none;

@@ -14,7 +14,7 @@ import Dashboard from './pages/Dashboard';
 import Language from './pages/Language';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { Fragment, useEffect } from 'react';
+import React,{ Fragment, useEffect } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { Profile } from './pages/Profile';
 import { UpdateProfile } from './pages/UpdateProfile';
@@ -37,6 +37,7 @@ import SearchPage from './pages/SearchPage';
 import UpdateBook from './pages/UpdateBook';
 import PlayListPage from './pages/PlayListPage';
 import AllPlayLists from './pages/AllPlayLists';
+import PlayListCartLoading from './components/playList/PlayListCartLoading';
 
 
 
@@ -44,11 +45,15 @@ import AllPlayLists from './pages/AllPlayLists';
 
 
 function App() {
+  const [isOnline, setIsOnline] = React.useState(navigator.onLine);
 
 
   useEffect(() => {
-      document.querySelector('html').dir = coockies.get('i18next') === 'ar' ? 'rtl' : 'ltr'
+      document.querySelector('html').dir = coockies.get('i18next') === 'ar' ? 'rtl' : 'ltr';
+      console.log(window.navigator.onLine)
   }, [])
+
+
 
 
   return (
@@ -109,6 +114,7 @@ function App() {
                 <Route path='post/loading/test' element={<PostCardLoading />} />
                 <Route path='book/loading/test' element={<BookCardLoading />} />
                 <Route path='post/detail/loading/test' element={<PostDetailLoading />} />
+                <Route path='play-list-loading-card' element={<PlayListCartLoading />} />
 
 
                 <Route path="*" element={<NotFoundPage />} />

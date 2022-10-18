@@ -24,13 +24,11 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 root.render(
-  <StrictMode>
     <HelmetProvider>
       <Suspense fallback={loadingarkup}>
         <App />
       </Suspense>
-    </HelmetProvider>
-  </StrictMode>,
+    </HelmetProvider>,
 );
 
 

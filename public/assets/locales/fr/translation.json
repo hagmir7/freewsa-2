@@ -9,7 +9,7 @@
     "Loading More": "Charger plus",
     "Read More": "En savoir plus",
     "Copyrights": "Droits d'auteur",
-    "copy-right": "We respect the property rights of others, and are always keen not to violate their rights, so authors and publishing houses have the right to demand the removal of a download link for a book from the site. If you find a book that belongs to you and do not agree to the publication of the download link for the book, or you have a suggestion or complaint, write to us through the Contact Us page, or by email at:",
+    "copy-right": "Nous respectons les droits de propriété d'autrui et veillons toujours à ne pas violer leurs droits. Les auteurs et maisons d'édition ont donc le droit d'exiger la suppression d'un lien de téléchargement d'un livre du site. Si vous trouvez un livre qui vous appartient et que vous n'acceptez pas la publication du lien de téléchargement du livre, ou si vous avez une suggestion ou une réclamation, écrivez-nous via le",
     "DOWNLOAD": "TÉLÉCHARGER",
     "Download Book": "Télécharger le livre",
     "Pages": "Pages",
@@ -101,7 +101,12 @@
     "Image": "Image",
     "Publish new book": "Publier un nouveau livre",
     "Search": "Rechercher",
-    "Popular Posts": "Articles populaires"
+    "Popular Posts": "Articles populaires",
+    "See All" : "Voir Tout",
+    "At": "Le",
+    "or by e-mail at" : "ou par e-mail à",
+    "No posts for this play list.":"Aucune publication pour cette liste de lecture.",
+    "No playlists": "Aucune liste de lecture"
 }
 
 

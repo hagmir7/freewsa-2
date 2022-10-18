@@ -1,7 +1,6 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
 import PlayList from '../components/PlayList';
 import PlayListItem from '../components/PlayListItem';
 import Copyrights from '../components/Copyrights';
@@ -9,7 +8,6 @@ import PlayListCards from '../components/PlayListCards';
 
 export default function PlayListPage() {
     const { slug, id } = useParams();
-    const { t } = useTranslation()
     return (
         <div className="container-lg mt-3">
             <div className="row">
